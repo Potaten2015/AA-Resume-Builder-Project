@@ -8,7 +8,7 @@ def seed_default_tags():
 
     for color in colors:
         for type in types:
-            name = "-".join(type, color)
+            name = "-".join((type, color))
             db.session.add(Default_Tag(name=name))
 
     db.session.commit()
@@ -18,5 +18,5 @@ def seed_default_tags():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_default_tags():
-    db.session.execute('TRUNCATE default_tags;')
+    db.session.execute('TRUNCATE default_tags CASCADE;')
     db.session.commit()

@@ -1,9 +1,12 @@
 from .db import db
-from .user_tag_resume_join import User_Resume_Tags
+from .user_resume_tag import User_Resume_Tag
 
 class User_Tag(db.Model):
     __tablename__ = 'user_tags'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    name = db.Column(db.String(30), nullable=False)
 
-    resumes = db.relationship("Resume", secondary=User_Resume_Tags, back_populates='user_tags')
+    user = db.relationship("User", back_populates='user_tags')
+    resumes = db.relationship("Resume", secondary=User_Resume_Tag, back_populates='user_tags')

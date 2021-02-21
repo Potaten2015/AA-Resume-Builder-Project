@@ -132,5 +132,5 @@ def seed_template_fields():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_template_fields():
-    db.session.execute('TRUNCATE template_fields;')
+    db.session.execute('TRUNCATE template_fields CASCADE;')
     db.session.commit()

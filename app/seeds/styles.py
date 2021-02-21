@@ -8,7 +8,7 @@ def seed_styles():
 
     for color in colors:
         for type in types:
-            name = "-".join(type, color)
+            name = "-".join((type, color))
             db.session.add(Style(name=name))
 
     db.session.commit()
@@ -18,5 +18,5 @@ def seed_styles():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_styles():
-    db.session.execute('TRUNCATE styles;')
+    # db.session.execute('TRUNCATE styles CASCADE;')
     db.session.commit()
