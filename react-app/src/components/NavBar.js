@@ -4,32 +4,32 @@ import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated, authenticated }) => {
   return (
-    <div class="flex flex-wrap py-2">
-      <div class="w-full px-4">
-        <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-blue-300 bg-opacity-75">
-          <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-            <div class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+    <div className="flex flex-wrap py-2">
+      <div className="w-full px-4">
+        <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-accentLight bg-opacity-75">
+          <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+            <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
               <NavLink
                 to="/"
                 exact={true}
                 activeClassName="active"
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                className="px-3 py-2 flex items-center text- uppercase font-bold leading-snug text-white hover:opacity-75"
               >
                 Resume Builder
               </NavLink>
               <button
-                class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                 type="button"
               >
-                <span class="block relative w-6 h-px rounded-sm bg-white"></span>
-                <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-                <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                <span className="block relative w-6 h-px rounded-sm bg-white"></span>
+                <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
               </button>
             </div>
-            <div class="flex lg:flex-grow items-center" id="example-navbar-info">
-              <ul class="flex flex-col lg:flex-row list-none ml-auto">
+            <div className="flex lg:flex-grow items-center" id="example-navbar-info">
+              <ul className="flex flex-col lg:flex-row list-none ml-auto">
                 {!authenticated && (
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       to="/sign-up"
                       exact={true}
@@ -41,7 +41,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   </li>
                 )}
                 {authenticated && (
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       to="/templates"
                       exact={true}
@@ -53,7 +53,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   </li>
                 )}
                 {authenticated && (
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       to="/resumes"
                       exact={true}
@@ -65,7 +65,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   </li>
                 )}
                 {!authenticated && (
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       to="/login"
                       exact={true}
@@ -77,7 +77,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                   </li>
                 )}
                 {authenticated && (
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <LogoutButton setAuthenticated={setAuthenticated} />
                   </li>
                 )}
