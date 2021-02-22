@@ -1,2 +1,2 @@
-import Templates from "./Templates"
-export default Templates
+import Templates from './Templates';
+export default Templates;
