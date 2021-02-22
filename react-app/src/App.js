@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
       <Switch>
         <Route exact path="/">
           <LandingPage authenticated={authenticated} />
@@ -57,9 +57,8 @@ function App() {
         <ProtectedRoute path="/resumes" exact={true} authenticated={authenticated}>
           <Management />
         </ProtectedRoute>
-        <ProtectedRoute path="/test" exact={true} authenticate={authenticated}>
-          <h1>Templates</h1>
-          {/* <Templates /> */}
+        <ProtectedRoute path="/templates" exact={true} authenticated={authenticated}>
+          <Templates />
         </ProtectedRoute>
         <ProtectedRoute path="/resume/:userId/create" exact={true} authenticated={authenticated}>
           <ResumeForm />
