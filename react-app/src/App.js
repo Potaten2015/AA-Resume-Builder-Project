@@ -34,7 +34,7 @@ function App() {
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
         <Route exact path="/">
-          <LandingPage />
+          <LandingPage authenticated={authenticated} />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
