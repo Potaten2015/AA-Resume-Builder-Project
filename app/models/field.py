@@ -7,4 +7,4 @@ class Field(db.Model):
     resume_html = db.Column(db.Text, nullable=False)
     form_html = db.Column(db.Text, nullable=False)
 
-    db.relationship("Template_Field", back_populates='field')
+    template_fields = db.relationship("Template_Field", back_populates='field')

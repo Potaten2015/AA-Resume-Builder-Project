@@ -6,7 +6,7 @@ def seed_template_default_tags():
     db.session.add(Template_Default_Tag(default_tag_id=1, template_id=1))
     db.session.add(Template_Default_Tag(default_tag_id=2, template_id=2))
     db.session.add(Template_Default_Tag(default_tag_id=3, template_id=3))
-    db.session.add(Template_Default_Tag(default_tag_id=4, template_id=3))
+    db.session.add(Template_Default_Tag(default_tag_id=3, template_id=2))
 
     db.session.commit()
 

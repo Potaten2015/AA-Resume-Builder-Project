@@ -1,4 +1,4 @@
-from db import db
+from .db import db
 
 class Template_Field(db.Model):
     __tablename__="template_fields"

@@ -31,22 +31,22 @@ def seed_template_fields():
 
 
     # fundamental
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=4))
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=5))
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=6))
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=7))
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=8))
-    db.session.add(Template_Field(template_id=2, field_id=4 page_order=9))
-    db.session.add(Template_Field(template_id=2, field_id=5 page_order=10))
-    db.session.add(Template_Field(template_id=2, field_id=5 page_order=11))
-    db.session.add(Template_Field(template_id=2, field_id=5 page_order=12))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=4))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=5))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=6))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=7))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=8))
+    db.session.add(Template_Field(template_id=2, field_id=4, page_order=9))
+    db.session.add(Template_Field(template_id=2, field_id=5, page_order=10))
+    db.session.add(Template_Field(template_id=2, field_id=5, page_order=11))
+    db.session.add(Template_Field(template_id=2, field_id=5, page_order=12))
 
     # internship
-    db.session.add(Template_Field(template_id=3, field_id=4 page_order=4))
-    db.session.add(Template_Field(template_id=3, field_id=4 page_order=5))
-    db.session.add(Template_Field(template_id=3, field_id=4 page_order=6))
-    db.session.add(Template_Field(template_id=3, field_id=4 page_order=7))
-    db.session.add(Template_Field(template_id=3, field_id=5 page_order=8))
+    db.session.add(Template_Field(template_id=3, field_id=4, page_order=4))
+    db.session.add(Template_Field(template_id=3, field_id=4, page_order=5))
+    db.session.add(Template_Field(template_id=3, field_id=4, page_order=6))
+    db.session.add(Template_Field(template_id=3, field_id=4, page_order=7))
+    db.session.add(Template_Field(template_id=3, field_id=5, page_order=8))
 
 
     db.session.commit()

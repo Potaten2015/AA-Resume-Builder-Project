@@ -18,15 +18,15 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_template_default_tags()
     seed_styles()
-    seed_fields()
     seed_resumes()
     seed_user_tags()
-    seed_templates()
     seed_user_resume_tags()
-    seed_template_fields()
+    seed_templates()
     seed_default_tags()
+    seed_fields()
+    seed_template_default_tags()
+    seed_template_fields()
 
 
     # Add other seed functions here
