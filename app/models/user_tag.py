@@ -1,5 +1,4 @@
 from .db import db
-from .user_resume_tag import User_Resume_Tag
 
 class User_Tag(db.Model):
     __tablename__ = 'user_tags'
@@ -9,4 +8,4 @@ class User_Tag(db.Model):
     name = db.Column(db.String(30), nullable=False)
 
     user = db.relationship("User", back_populates='user_tags')
-    resumes = db.relationship("Resume", secondary=User_Resume_Tag, back_populates='user_tags')
+    user_resume_tags = db.relationship("User_Resume_Tag", back_populates='user_tag')

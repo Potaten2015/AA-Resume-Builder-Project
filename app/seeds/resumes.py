@@ -3,8 +3,8 @@ from app.models import db, Resume
 # Adds a demo user, you can add other users here if you want
 def seed_resumes():
 
-    sample_resume_1 = Resume(html="""<h1>THIS IS A SAMPLE RESUME </h1><p>WOW IT WORKS</p>""", user_id=1)
-    sample_resume_2 = Resume(html="""<h1>THIS IS ALSO A SAMPLE RESUME </h1><p>WOW IT ALSO WORKS</p>""", user_id=1)
+    sample_resume_1 = Resume(html="""<h1>THIS IS A SAMPLE RESUME </h1><p>WOW IT WORKS</p>""", user_id=1,style_id=1)
+    sample_resume_2 = Resume(html="""<h1>THIS IS ALSO A SAMPLE RESUME </h1><p>WOW IT ALSO WORKS</p>""", user_id=1,style_id=10)
 
     db.session.add(sample_resume_1)
     db.session.add(sample_resume_2)
