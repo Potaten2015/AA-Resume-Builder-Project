@@ -8,6 +8,9 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 
+// Component import line
+import { LandingPage, MainPage, Templates, Management, ResumeForm } from "./components";
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +33,9 @@ function App() {
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
+        <Route exact={true} path="/">
+          <LandingPage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -47,6 +53,18 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path="/main" exact={true} authenticated={authenticated}>
+          <MainPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/templates" exact={true} authenticate={authenticated}>
+          <Templates />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/resume" exact={true} authenticated={authenticated}>
+          <Management />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resume/:userId/create" exact={true} authenticated={authenticated}>
+          <ResumeForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
