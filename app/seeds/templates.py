@@ -3,6 +3,11 @@ from app.models import db, Template
 # Adds a demo user, you can add other users here if you want
 def seed_templates():
 
+    template_names = ("Skill Oriented", "Fundamental", "Chronological")
+
+    for name in template_names:
+        db.session.add(Template(name=name))
+
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

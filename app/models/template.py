@@ -5,4 +5,6 @@ class Template(db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    html = db.Column(db.Text, nullable=False)
+
+    template_fields = db.relationship("Template_Field", back_populates="templates")
+    template_default_tags = db.relationship("Template_Default_Tag", back_populates="templates")
