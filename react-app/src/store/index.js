@@ -4,9 +4,11 @@ import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
 
 import resumeReducer from './resume';
+import templateReducer from "./template";
 
 const rootReducer = {
   resume: resumeReducer,
+  template: templateReducer
 };
 
 const finalReducer = storage.reducer(combineReducers(rootReducer));
