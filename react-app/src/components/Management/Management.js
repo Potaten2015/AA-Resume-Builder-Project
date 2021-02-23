@@ -13,12 +13,12 @@ const Management = () => {
   }, [dispatch, getResumes]);
 
   const resumes = useSelector((state) => state.resume);
-  console.log(resumes);
+  console.log('HELLO', resumes);
 
   return (
     <>
       <h1>Management Page</h1>
-      {/* { resumes && resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)} */}
+      {resumes && resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)}
     </>
   );
 };
