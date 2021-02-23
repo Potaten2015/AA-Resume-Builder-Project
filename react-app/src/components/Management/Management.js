@@ -4,18 +4,21 @@ import * as resumeActions from "../../store/resume";
 import { useDispatch, useSelector } from 'react-redux';
 
 const Management = () => {
-    // const [resumes, setResumes] = useState([])
-    // const { getResumes } = resumeActions;
+    const { getResumes } = resumeActions;
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getResumes())
-    // }, [dispatch, getResumes])
+    useEffect(() => {
+        dispatch(getResumes())
+    }, [dispatch, getResumes])
 
+    const resumes = useSelector((state) => state.resume);
 
     return (
-        <h1>Management Page</h1>
+        <>
+            <h1>Management Page</h1>
+            { resumes && resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)}
+        </>
     )
 }
 
