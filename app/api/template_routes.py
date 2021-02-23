@@ -13,13 +13,13 @@ def get_templates():
     template_resume_html = {}
     template_form_html = {}
 
+
     for template in templates:
+        field_tuples = sorted([(template_field.page_order - 1, index) for index, template_field in enumerate(template.template_fields)], key=lambda x:x[0])
         for template_field in template.template_fields:
             template_resume_html[template.name] = ""
             template_form_html[template.name] = ""
-
-    for template in templates:
-        for template_field in template.template_fields:
-            template_resume_html[template.name] = template_resume_html[template.name] + template_field.field.resume_html
-            template_form_html[template.name] = template_form_html[template.name] + template_field.field.form_html
-    return template_resume_html['Chronological']
+        for pair in field_tuples:
+            template_resume_html[template.name] = template_resume_html[template.name] + template.template_fields[pair[1]].field.resume_html
+            template_form_html[template.name] = template_form_html[template.name] + template.template_fields[pair[1]].field.form_html
+    return template_resume_html

@@ -1,13 +1,15 @@
 const LOAD_TEMPLATES = 'resume/LOAD_TEMPLATES'
 
-const resume_loading = resumes => ({
+const template_loading = templates => ({
     type: LOAD_TEMPLATES,
-    resumes
+    templates
 })
 
 export const getTemplates = () => async dispatch =>{
     const response = await fetch(`api/templates/`)
-    dispatch(resume_loading(response))
+    const res = await response.json()
+    dispatch(template_loading(res))
+    return res
 }
 
 const templateReducer = (state = {}, action) => {
@@ -15,7 +17,7 @@ const templateReducer = (state = {}, action) => {
     switch(action.type) {
         case LOAD_TEMPLATES: {
             newState = state;
-            newState.templates = action
+            newState.templates = action.templates
             return newState;
         }
         default:
