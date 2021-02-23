@@ -11,13 +11,19 @@ const Management = () => {
     useEffect(() => {
         dispatch(getResumes())
     }, [dispatch, getResumes])
+    
+    const currentUserId = useSelector((state) => state.user.id);
+    // const resumes = useSelector((state) => state.resume.filter((resume) => resume.user_id === currentUserId));
 
-    const resumes = useSelector((state) => state.resume);
+    
+    const resumes = useSelector((state) => state.resume.resume)
+    const resumVals = Object.values(resumes)
+    const usersResumes = resumVals.filter((resume) => resume.user_id === currentUserId)
 
     return (
         <>
             <h1>Management Page</h1>
-            { resumes && resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)}
+            { usersResumes && usersResumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume.html }} />)}
         </>
     )
 }

@@ -15,11 +15,8 @@ const resumeReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_RESUMES: {
-            newState = [];
-            const resumeObj = action.resumes;
-            for (const key in resumeObj) {
-                newState.push(resumeObj[key])
-            }
+            newState = {}
+            newState.resume = action.resumes;
             debugger
             return newState;
         }
