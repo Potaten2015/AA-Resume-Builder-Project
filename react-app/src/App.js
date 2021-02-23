@@ -10,6 +10,7 @@ import { authenticate } from './services/auth';
 
 // Component import line
 import { LandingPage, MainPage, Templates, Management, ResumeForm } from './components';
+import EditingPage from './components/EditingPage/EditingPage';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -61,7 +62,7 @@ function App() {
           <Templates />
         </ProtectedRoute>
         <ProtectedRoute path="/resume/:userId/create" exact={true} authenticated={authenticated}>
-          <ResumeForm />
+          <EditingPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
