@@ -1,7 +1,10 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import "./EditingPage.css"
 
 const EditingPage = () => {
+
+    const current_template = useSelector(state => state.template.current)
 
     return (
         <div className="editing-page">

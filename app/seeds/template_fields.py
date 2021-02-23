@@ -2,19 +2,55 @@ from app.models import db, Template_Field
 
 # Adds a demo user, you can add other users here if you want
 def seed_template_fields():
-    # main header  
+    # full_name (1)
     db.session.add(Template_Field(template_id=1, field_id=1, page_order=1))
     db.session.add(Template_Field(template_id=2, field_id=1, page_order=1))
     db.session.add(Template_Field(template_id=3, field_id=1, page_order=1))
-    # contact
+    # github (2)
     db.session.add(Template_Field(template_id=1, field_id=2, page_order=2))
     db.session.add(Template_Field(template_id=2, field_id=2, page_order=2))
     db.session.add(Template_Field(template_id=3, field_id=2, page_order=2))
-    # introduction
+    # city (3)
     db.session.add(Template_Field(template_id=1, field_id=3, page_order=3))
     db.session.add(Template_Field(template_id=2, field_id=3, page_order=3))
     db.session.add(Template_Field(template_id=3, field_id=3, page_order=3))
-    
+
+    # phone_number (4)
+
+    # email (5)
+
+    # linkedin (6)
+
+    # intro_header (7)
+
+    # intro_mission (8)
+
+    # intro_long (9)
+
+    # intro_skill (10)
+
+    # experience_company (11)
+
+    # experience_city (12)
+
+    # experiencce_date (13)
+
+    # experience_description (14)
+
+    # experience_title (15)
+
+    # experience_responsibility (16)
+
+    # education_facility (17)
+
+    # education_degree (18)
+
+    # education_graduation_date (19)
+
+    # education_gpa (20)
+
+    # education_minor (21)
+
 
     # skill-oriented body
     db.session.add(Template_Field(template_id=1, field_id=4, page_order=4))
