@@ -13,7 +13,6 @@ const Management = () => {
   }, [dispatch, getResumes]);
 
   const resumes = useSelector((state) => state.resume);
-  console.log('HELLO', resumes);
 
   return (
     <>
