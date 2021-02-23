@@ -24,12 +24,12 @@ const templateReducer = (state = {}, action) => {
     let newState;
     switch(action.type) {
         case LOAD_TEMPLATES: {
-            newState = state;
+            newState = Object.assign({}, state);
             newState.templates = action.templates
             return newState;
         }
         case CURRENT_TEMPLATE: {
-            newState = state;
+            newState = Object.assign({}, state);
             newState.current = action.template
             return newState;
         }
