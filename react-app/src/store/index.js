@@ -1,10 +1,9 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import localForage from "localforage";
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
 
-import resumeReducer from './session';
+import resumeReducer from './resume';
 
 const rootReducer = {
   resume: resumeReducer,
