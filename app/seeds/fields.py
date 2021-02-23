@@ -60,7 +60,7 @@ def seed_fields():
     education_graduation_date = Field(name="education_graduation_date", placeholder="Date Attended")
     db.session.add(education_graduation_date)
 
-    eduction_gpa = Field(name="eduction_gpa", placeholder="GPA")
+    eduction_gpa = Field(name="education_gpa", placeholder="GPA")
     db.session.add(eduction_gpa)
 
     education_minor = Field(name="education_minor", placeholder="Minor")

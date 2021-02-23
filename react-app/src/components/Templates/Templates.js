@@ -28,7 +28,10 @@ const Templates = () => {
             <div className="template-solo">
               <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate(the_template))}>
                 {temp_key}
-                {the_template.map(field => <EditHelper field={field} form={false} value={field.placeholder} />)}
+                {the_template.map(field => {
+                  console.log(field)
+                return <EditHelper field={field} form={false} value={field.placeholder} />
+                })}
               </NavLink>
             </div>
           )

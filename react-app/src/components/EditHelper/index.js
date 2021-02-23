@@ -20,9 +20,10 @@ const EditHelper = ({field, form, value, setValues, number}) => {
     } else {
         switch(field.name) {
             case "full_name": case "github": case "city": case "phone_number": case "linkedin": case "intro_header": case "intro_skill": case "experience_company": case "experience_city": case "experience_date": case "experience_title": case "education_facility": case "education_degree": case "education_graduation_date": case "education_gpa": case "education_minor": case "email": case "intro_mission" : case "intro_long": case "experience_description": case "experience_responsibility":
-                returnField = <h1 value={value || field.placeholder}></h1>
-                default:
-                    returnField =<p>Field Not Found</p>
+                returnField = <h1>{value || field.placeholder}</h1>
+                break;
+            default:
+                returnField =<p>Field Not Found</p>
         }
     }
 
