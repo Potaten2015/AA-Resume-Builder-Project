@@ -5,10 +5,12 @@ import createEngine from 'redux-storage-engine-localstorage';
 
 import resumeReducer from './resume';
 import templateReducer from "./template";
+import userReducer from "./user";
 
 const rootReducer = {
   resume: resumeReducer,
-  template: templateReducer
+  template: templateReducer,
+  user: userReducer,
 };
 
 const finalReducer = storage.reducer(combineReducers(rootReducer));
