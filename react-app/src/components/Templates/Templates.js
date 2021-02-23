@@ -9,8 +9,6 @@ const Templates = () => {
   let templates = useSelector(state => state.template.templates)
   let [loaded, setLoaded] = useState(false)
 
-  console.log(Object.keys(templates))
-
   useEffect(()=>{
     dispatch(getTemplates()).then(setLoaded(true));
   },[dispatch])
