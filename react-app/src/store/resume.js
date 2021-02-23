@@ -18,7 +18,7 @@ const resumeReducer = (state = {}, action) => {
             return newState;
         }
         default:
-            return
+            return state
     }
 }
 
