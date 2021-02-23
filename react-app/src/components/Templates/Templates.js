@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './Templates.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemplates } from '../../store/template';
+import { NavLink } from 'react-router-dom';
 
 const Templates = () => {
   const dispatch = useDispatch();
   let templates = useSelector((state) => state.template.templates);
   let [loaded, setLoaded] = useState(false);
-
-  // console.log(Object.keys(templates))
 
   useEffect(() => {
     dispatch(getTemplates()).then(setLoaded(true));
@@ -28,8 +27,10 @@ const Templates = () => {
                 };
                 return (
                   <div className="template-solo">
-                    <h2>{temp_key}</h2>
-                    <div dangerouslySetInnerHTML={scaryHTML()} key={temp_key} />
+                    <NavLink to="/resume/:userId/create">
+                      <h2>{temp_key}</h2>
+                      <div dangerouslySetInnerHTML={scaryHTML()} key={temp_key} />
+                    </NavLink>
                   </div>
                 );
               })}
