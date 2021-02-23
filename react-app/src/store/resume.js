@@ -5,16 +5,22 @@ const resume_loading = resumes => ({
     resumes
 })
 
-export const getResumes = () => async dispatch =>{
-    const response = await fetch(`api/resumes/`)
-    dispatch(resume_loading(response))
+export const getResumes = () => async dispatch => {
+    const response = await fetch(`/api/resumes/`)
+    const res = await response.json()
+    dispatch(resume_loading(res))
 }
 
 const resumeReducer = (state = {}, action) => {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         case LOAD_RESUMES: {
             newState = [];
+            const resumeObj = action.resumes;
+            for (const key in resumeObj) {
+                newState.push(resumeObj[key])
+            }
+            debugger
             return newState;
         }
         default:
