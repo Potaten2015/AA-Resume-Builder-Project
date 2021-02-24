@@ -12,9 +12,10 @@ const EditingPage = () => {
   console.log('VALUE HOLDER', valueHolder);
   const [values, setValues] = useState(valueHolder);
 
-  // useEffect(() => {
-  //   console.log('values', values[0]);
-  // }, []);
+  useEffect(() => {
+    console.log('values', values);
+  }, [values]);
+
   return (
     <div className="editing-page">
       <div className="editing-page-outer">
@@ -22,7 +23,7 @@ const EditingPage = () => {
           <h1>Editing Resume</h1>
           <form>
             {current_template.map((field, index) => {
-              console.log('VALUES', values);
+              // console.log('VALUES', values);
               return (
                 <div>
                   <EditHelper
