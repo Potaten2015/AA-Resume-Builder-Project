@@ -16,7 +16,6 @@ const resumeReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_RESUMES: {
             newState = {}
-            debugger
             newState.resume = action.resumes;
             return newState;
         }
