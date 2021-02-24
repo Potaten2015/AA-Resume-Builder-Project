@@ -5,19 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Management = () => {
   const { getResumes } = resumeActions;
-
+  let [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getResumes());
-  }, [dispatch, getResumes]);
+    dispatch(getResumes()).then(setLoaded(true));
+  }, [dispatch]);
 
   const resumes = useSelector((state) => state.resume);
 
   return (
     <>
       <h1>Management Page</h1>
-      {resumes && resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)}
+      {loaded &&
+        resumes.length &&
+        resumes.map((resume) => <div dangerouslySetInnerHTML={{ __html: resume }} />)}
     </>
   );
 };
