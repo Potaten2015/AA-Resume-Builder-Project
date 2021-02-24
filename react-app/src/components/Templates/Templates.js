@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTemplates, updateCurrentTemplate } from '../../store/template';
 import { NavLink } from 'react-router-dom';
 import EditHelper from '../EditHelper';
+import Preview from './Preview';
 
 const Templates = () => {
   // const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const Templates = () => {
   let [loaded, setLoaded] = useState(false);
   const user = useSelector((state) => state.user);
 
+  useEffect(()=>{
+    dispatch(getTemplates()).then(() =>setLoaded(true));
+  },[dispatch])
+
+
   useEffect(() => {
     dispatch(getTemplates()).then(setLoaded(true));
   }, [dispatch]);
@@ -25,29 +31,10 @@ const Templates = () => {
         <div className="template-page-inner">
           <h1>Templates</h1>
           <div className="template-row">
-            {loaded &&
-              templates &&
-              Object.keys(templates).length > 0 &&
-              Object.keys(templates).map((temp_key) => {
-                const the_template = templates[temp_key];
-                // console.log('the_template', the_template);
-                // if (the_template.length) {
-                return (
-                  <div className="template-solo">
-                    <NavLink
-                      to={`/resume/${user.id}/create`}
-                      onClick={(e) => dispatch(updateCurrentTemplate(the_template))}
-                    >
-                      {temp_key}
-                      {the_template.map((field) => {
-                        console.log(field);
-                        return <EditHelper field={field} form={false} value={field.placeholder} />;
-                      })}
-                    </NavLink>
-                  </div>
-                );
-                // }
-              })}
+            {loaded && templates && (Object.keys(templates).length > 0) && Object.keys(templates).map(temp_key =>{
+              const the_template=templates[temp_key]
+              return <Preview template={the_template} template_name={temp_key} />
+            })}
           </div>
         </div>
       </div>
