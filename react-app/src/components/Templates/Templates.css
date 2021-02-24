@@ -8,3 +8,56 @@
 .template-solo {
   border: dashed black 2px;
 }
+
+.template-header-flex {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px black dotted;
+  align-items: flex-end;
+}
+
+.header-name {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.template-contact-info {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px black dotted;
+}
+
+.intro-header {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.intro-mission {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.intro-long {
+  font-size: 0.8em;
+  font-weight: 200;
+}
+
+.introSkill-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px black dotted;
+}
+
+.intro-skill {
+  font-size: 0.8em;
+  font-weight: 200;
+}
+
+.experience-header {
+  font-size: 1.2em;
+  font-weight: 400;
+}
