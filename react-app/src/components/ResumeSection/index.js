@@ -29,10 +29,26 @@ const ResumeSection = ({section}) => {
                 {section.fields.map( field => <EditHelper field={field} form={false} /> )}
             </div>
         )
-    }  else if(section.name.includes("experience") && section.name.includes("1")){
+    } else if(section.name.includes("experienceHeader") && section.name.includes("1")){
         return (
             <div>
-                <h1>EXPERIENCE</h1>
+                <h2 className="experience-header">Work Experience</h2>
+                <div className="experience-top-flex">
+
+                </div>
+                {section.fields.map( field => <EditHelper field={field} form={false} /> )}
+            </div>
+        )
+    } else if(section.name.includes("experienceHeader")){
+        return (
+            <div>
+                {section.fields.map( field => <EditHelper field={field} form={false} /> )}
+            </div>
+        )
+    } else if(section.name.includes("experience") && section.name.includes("1")){
+        return (
+            <div>
+                <h2 className="experience-header">Work Experience</h2>
                 {section.fields.map( field => <EditHelper field={field} form={false} /> )}
             </div>
         )
@@ -45,7 +61,7 @@ const ResumeSection = ({section}) => {
     } else if(section.name.includes("education") && section.name.includes("1")){
         return (
             <div>
-                <h1>EDUCATION</h1>
+                <h2 className="education-header">Education</h2>
                 {section.fields.map( field => <EditHelper field={field} form={false} /> )}
             </div>
         )

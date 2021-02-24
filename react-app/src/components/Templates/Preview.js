@@ -2,7 +2,6 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateCurrentTemplate} from '../../store/template'
-import EditHelper from '../EditHelper'
 import ResumeSection from '../ResumeSection'
 
 const Preview = ({template_name, template}) => {
@@ -45,17 +44,17 @@ const Preview = ({template_name, template}) => {
             case "experience_company":
                 if(currentSection.includes('experience')) {
                     sectionCount ++;
-                    currentSection = "experience" + sectionCount.toString()
+                    currentSection = "experienceHeader" + sectionCount.toString()
                 } else {
                     sectionCount = 1;
-                    currentSection = "experience" + sectionCount.toString()
+                    currentSection = "experienceHeader" + sectionCount.toString()
                 }
                 break;
             case "experience_city":
-                currentSection = "experience" + sectionCount.toString()
+                currentSection = "experienceHeader" + sectionCount.toString()
                 break;
             case "experience_date":
-                currentSection = "experience" + sectionCount.toString()
+                currentSection = "experienceHeader" + sectionCount.toString()
                 break;
             case "experience_title":
                 currentSection = "experience" + sectionCount.toString()
@@ -110,13 +109,15 @@ const Preview = ({template_name, template}) => {
     }
 
     return (
-        <div className="template-solo">
-          <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate(template))}>
+        <div>
             {template_name}
-            {Object.keys(sections).map(section => {
-                return <ResumeSection section={sections[section]} />
-            })}
-          </NavLink>
+            <div className="template-solo">
+            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate(template))}>
+                {Object.keys(sections).map(section => {
+                    return <ResumeSection section={sections[section]} />
+                })}
+            </NavLink>
+            </div>
         </div>
       )
 }

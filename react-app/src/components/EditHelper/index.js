@@ -42,16 +42,16 @@ const EditHelper = ({field, form, value, setValues, number}) => {
                 returnField = <li className="intro-skill">{value || field.placeholder}</li>
                 break;
             case "experience_company":
-                returnField = <h2>{value || field.placeholder}</h2>
+                returnField = <h2 className="company-name">{value || field.placeholder}</h2>
                 break;
             case "experience_city":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="company-city">{value || field.placeholder}</p>
                 break;
             case "experience_date":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="company-date">{value || field.placeholder}</p>
                 break;
             case "experience_title":
-                returnField = <h2>{value || field.placeholder}</h2>
+                returnField = <h2 className="role-title">{value || field.placeholder}</h2>
                 break;
             case "education_facility":
                 returnField = <h2>{value || field.placeholder}</h2>
