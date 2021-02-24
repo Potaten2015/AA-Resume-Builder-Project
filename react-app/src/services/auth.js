@@ -53,6 +53,5 @@ export const resumeManagement = async(resumes) => {
       resumes
     }),
   });
-  console.log("HITS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   return await response.json()
 }

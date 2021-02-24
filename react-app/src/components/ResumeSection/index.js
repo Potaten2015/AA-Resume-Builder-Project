@@ -3,8 +3,6 @@ import EditHelper from '../EditHelper';
 
 const ResumeSection = ({section, values}) => {
 
-    console.log(section)
-
     if(section.name.includes("header")){
         return (
             <div className="template-header-flex">

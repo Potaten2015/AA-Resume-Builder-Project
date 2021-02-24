@@ -15,10 +15,6 @@ const EditingPage = () => {
   console.log('VALUE HOLDER', valueHolder);
   const [values, setValues] = useState(valueHolder);
 
-  useEffect(() => {
-    console.log('values', values);
-  }, [values]);
-
   return (
     <div className="editing-page">
       <div className="editing-page-outer">
@@ -44,7 +40,7 @@ const EditingPage = () => {
         </div>
         <div className="editing-page-preview-container">
           <h1>Resume Preview</h1>
-          <Preview template_name={current_template_name} template={current_template} values={values}/>
+          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} />
         </div>
       </div>
     </div>
