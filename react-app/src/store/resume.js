@@ -12,20 +12,17 @@ export const getResumes = () => async (dispatch) => {
 };
 
 const resumeReducer = (state = {}, action) => {
-  let newState;
-  switch (action.type) {
-    case LOAD_RESUMES: {
-      newState = [];
-      const resumeObj = action.resumes;
-      for (const key in resumeObj) {
-        newState.push(resumeObj[key]);
-      }
-      // debugger
-      return newState;
+    let newState;
+    switch (action.type) {
+        case LOAD_RESUMES: {
+            newState = {}
+            debugger
+            newState.resume = action.resumes;
+            return newState;
+        }
+        default:
+            return state
     }
-    default:
-      return state;
-  }
 };
 
 export default resumeReducer;
