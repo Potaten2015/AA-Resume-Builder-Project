@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditHelper = ({ field, form, value, setValues, number, valueHolder }) => {
+const EditHelper = ({ field, form, value, setValues, number }) => {
   let returnField;
   if (form) {
     switch (field.name) {
@@ -41,7 +41,14 @@ const EditHelper = ({ field, form, value, setValues, number, valueHolder }) => {
           <input
             type="email"
             value={value}
-            onChange={(e) => setValues((prev) => (prev[number] = e.target.value))}
+            onChange={(e) => {
+              e.persist();
+              setValues((prev) => {
+                let newState = Object.assign({}, prev);
+                newState[number] = e.target.value;
+                return newState;
+              });
+            }}
             placeholder={field.placeholder}
           />
         );
@@ -53,7 +60,14 @@ const EditHelper = ({ field, form, value, setValues, number, valueHolder }) => {
         returnField = (
           <textarea
             value={value}
-            onChange={(e) => setValues((prev) => (prev[number] = e.target.value))}
+            onChange={(e) => {
+              e.persist();
+              setValues((prev) => {
+                let newState = Object.assign({}, prev);
+                newState[number] = e.target.value;
+                return newState;
+              });
+            }}
             placeholder={field.placeholder}
           ></textarea>
         );
