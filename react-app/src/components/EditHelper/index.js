@@ -54,19 +54,19 @@ const EditHelper = ({field, form, value, setValues, number}) => {
                 returnField = <h2 className="role-title">{value || field.placeholder}</h2>
                 break;
             case "education_facility":
-                returnField = <h2>{value || field.placeholder}</h2>
+                returnField = <h2 className="education-facility">{value || field.placeholder}</h2>
                 break;
             case "education_degree":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="education-degree" > {value || field.placeholder}</p>
                 break;
             case "education_graduation_date":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="education-graduation-date">{value || field.placeholder}</p>
                 break;
             case "education_gpa":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="education-gpa">{value || field.placeholder}</p>
                 break;
             case "education_minor":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="education-minor">{value || field.placeholder}</p>
                 break;
             case "email":
                 returnField = <p>{value || field.placeholder}</p>
@@ -78,10 +78,10 @@ const EditHelper = ({field, form, value, setValues, number}) => {
                 returnField = <p className="intro-long">  {value || field.placeholder}</p>
                 break;
             case "experience_description":
-                returnField = <p>{value || field.placeholder}</p>
+                returnField = <p className="experience-description">{value || field.placeholder}</p>
                 break;
             case "experience_responsibility":
-                returnField = <li>{value || field.placeholder}</li>
+                returnField = <li className="experience-responsibility">{value || field.placeholder}</li>
                 break;
             default:
                 returnField =<p>Field Not Found</p>

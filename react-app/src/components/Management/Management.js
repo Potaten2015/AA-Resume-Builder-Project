@@ -12,7 +12,6 @@ const Management = () => {
 
   useEffect(() => {
     dispatch(getResumes()).then(() => setLoaded(true));
-    console.log('RESUMES', resumes);
   }, [dispatch]);
 
   return (
