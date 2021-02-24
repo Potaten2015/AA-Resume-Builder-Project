@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../services/auth';
+import * as userActions from "../../store/user";
+import { useDispatch } from 'react-redux';
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
+  const { saveUser }  = userActions
+  const dispatch = useDispatch()
+  
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +17,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      dispatch(saveUser(user))
     } else {
       setErrors(user.errors);
     }
