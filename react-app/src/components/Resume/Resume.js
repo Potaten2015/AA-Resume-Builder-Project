@@ -10,8 +10,6 @@ const Resume = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const resume = useSelector((state) => state.resume.resume)
-    debugger
-    const currentUser = useSelector((state) => state.user);
 
     useEffect(() => {
         dispatch(getOneResume(resumeId)).then(() => setLoaded(true));

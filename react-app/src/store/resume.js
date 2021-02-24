@@ -19,7 +19,6 @@ export const getResumes = () => async (dispatch) => {
 export const getOneResume = (id) => async (dispatch) => {
   const response = await fetch(`/api/resumes/${id}`);
   const res = await response.json();
-  debugger
   dispatch(resume_loading(res));
 };
 
@@ -35,7 +34,6 @@ const resumeReducer = (state = {}, action) => {
     case LOAD_RESUMES: {
       newState = {};
       newState.resume = action.resumes;
-      debugger
       return newState;
     }
     case CLEAR_RESUMES: {
