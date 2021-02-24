@@ -1,14 +1,18 @@
 import React from 'react';
 import { logout } from '../../services/auth';
-import { useDispatch } from 'react-redux'
-import { logoutUser } from '../../store/user'
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../store/user';
+import { clearResumes } from '../../store/resume';
+import { clearTemplates } from '../../store/template';
 
 const LogoutButton = ({ setAuthenticated }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onLogout = async (e) => {
     await logout();
-    await dispatch(logoutUser())
+    await dispatch(logoutUser());
+    await dispatch(clearResumes());
+    await dispatch(clearTemplates());
     setAuthenticated(false);
   };
 
