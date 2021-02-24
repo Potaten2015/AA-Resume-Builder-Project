@@ -81,14 +81,32 @@
 .company-city {
   font-size: 0.8em;
   font-weight: 400;
+  margin-left: 1em;
 }
 
 .company-date {
   font-size: 0.8em;
   font-weight: 400;
+  margin-right: 4em;
 }
 
 .role-title {
   font-size: 0.9em;
   font-weight: 200;
+}
+
+.experience-top-flex-outer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.experience-top-flex-left {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
