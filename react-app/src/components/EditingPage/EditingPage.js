@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EditHelper from '../EditHelper';
+import Preview from '../Templates/Preview';
 import './EditingPage.css';
 
 const EditingPage = () => {
-  const current_template = useSelector((state) => state.template.current);
+  const current_template_object = useSelector((state) => state.template.current);
+  const current_template = current_template_object.fields;
+  const current_template_name = current_template_object.name;
   const valueHolder = {};
   for (let i = 0; i < current_template.length; i++) {
     valueHolder[i] = '';
   }
   console.log('VALUE HOLDER', valueHolder);
   const [values, setValues] = useState(valueHolder);
-
-  useEffect(() => {
-    console.log('values', values);
-  }, [values]);
 
   return (
     <div className="editing-page">
@@ -41,7 +40,7 @@ const EditingPage = () => {
         </div>
         <div className="editing-page-preview-container">
           <h1>Resume Preview</h1>
-          <p>This is a preview</p>
+          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} />
         </div>
       </div>
     </div>

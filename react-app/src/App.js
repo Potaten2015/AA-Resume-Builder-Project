@@ -10,7 +10,7 @@ import { authenticate } from './services/auth';
 import { useDispatch } from 'react-redux';
 
 // Component import line
-import { LandingPage, MainPage, Templates, Management, ResumeForm } from './components';
+import { LandingPage, MainPage, Templates, Management } from './components';
 import EditingPage from './components/EditingPage/EditingPage';
 import { saveUser } from './store/user';
 
