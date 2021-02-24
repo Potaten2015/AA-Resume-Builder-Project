@@ -33,22 +33,40 @@ const ResumeSection = ({section}) => {
         return (
             <div>
                 <h2 className="experience-header">Work Experience</h2>
-                <div className="experience-top-flex">
-
+                <div className="experience-top-flex-outer">
+                    <div className="experience-top-flex-left">
+                        {section.fields.filter(field => {
+                            return field.name.includes("company") || field.name.includes("city")
+                        }).map( field => <EditHelper field={field} form={false} /> )}
+                    </div>
+                    <div className="experience-top-flex-right">
+                        {section.fields.filter(field => {
+                            return field.name.includes("date")
+                        }).map( field => <EditHelper field={field} form={false} /> )}
+                    </div>
                 </div>
-                {section.fields.map( field => <EditHelper field={field} form={false} /> )}
             </div>
         )
     } else if(section.name.includes("experienceHeader")){
         return (
             <div>
-                {section.fields.map( field => <EditHelper field={field} form={false} /> )}
+                <div className="experience-top-flex-outer">
+                    <div className="experience-top-flex-left">
+                        {section.fields.filter(field => {
+                            return field.name.includes("company") || field.name.includes("city")
+                        }).map( field => <EditHelper field={field} form={false} /> )}
+                    </div>
+                    <div className="experience-top-flex-right">
+                        {section.fields.filter(field => {
+                            return field.name.includes("date")
+                        }).map( field => <EditHelper field={field} form={false} /> )}
+                    </div>
+                </div>
             </div>
         )
     } else if(section.name.includes("experience") && section.name.includes("1")){
         return (
             <div>
-                <h2 className="experience-header">Work Experience</h2>
                 {section.fields.map( field => <EditHelper field={field} form={false} /> )}
             </div>
         )
