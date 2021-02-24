@@ -21,9 +21,9 @@ const Management = () => {
         resumes &&
         Object.values(resumes).map((resume) => {
           return (
-            <>
+            <a href={`resumes/${resume.id}`}>
               <div dangerouslySetInnerHTML={{ __html: resume.html }} />
-            </>
+            </a>
           );
         })}
     </>

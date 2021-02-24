@@ -10,7 +10,7 @@ import { authenticate } from './services/auth';
 import { useDispatch } from 'react-redux';
 
 // Component import line
-import { LandingPage, MainPage, Templates, Management, ResumeForm } from './components';
+import { LandingPage, MainPage, Templates, Management, ResumeForm, Resume } from './components';
 import EditingPage from './components/EditingPage/EditingPage';
 import { saveUser } from './store/user';
 
@@ -61,6 +61,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/resumes" exact={true} authenticated={authenticated}>
           <Management />
+        </ProtectedRoute>
+        <ProtectedRoute path="/resumes/:resumeId" exact={true} authenticated={authenticated}>
+          <Resume />
         </ProtectedRoute>
         <ProtectedRoute path="/templates" exact={true} authenticated={authenticated}>
           <Templates />

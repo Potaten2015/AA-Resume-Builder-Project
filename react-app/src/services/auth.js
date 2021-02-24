@@ -46,13 +46,13 @@ export const signUp = async (username, email, password) => {
   return await response.json();
 }
 
-export const resumeManagement = async(resumes) => {
-  const response = await fetch("/api/resumes", {
-    method: "GET",
-    body: JSON.stringify({
-      resumes
-    }),
-  });
-  console.log("HITS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-  return await response.json()
-}
+// export const resumeManagement = async(resumes) => {
+//   const response = await fetch("/api/resumes", {
+//     method: "GET",
+//     body: JSON.stringify({
+//       resumes
+//     }),
+//   });
+//   console.log("HITS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+//   return await response.json()
+// }
