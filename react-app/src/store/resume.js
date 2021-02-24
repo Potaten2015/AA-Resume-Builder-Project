@@ -1,15 +1,15 @@
-const LOAD_RESUMES = 'resume/LOAD_RESUMES'
+const LOAD_RESUMES = 'resume/LOAD_RESUMES';
 
-const resume_loading = resumes => ({
-    type: LOAD_RESUMES,
-    resumes
-})
+const resume_loading = (resumes) => ({
+  type: LOAD_RESUMES,
+  resumes,
+});
 
-export const getResumes = () => async dispatch => {
-    const response = await fetch(`/api/resumes/`)
-    const res = await response.json()
-    dispatch(resume_loading(res))
-}
+export const getResumes = () => async (dispatch) => {
+  const response = await fetch(`/api/resumes/`);
+  const res = await response.json();
+  dispatch(resume_loading(res));
+};
 
 const resumeReducer = (state = {}, action) => {
     let newState;
@@ -23,6 +23,6 @@ const resumeReducer = (state = {}, action) => {
         default:
             return state
     }
-}
+};
 
-export default resumeReducer
+export default resumeReducer;

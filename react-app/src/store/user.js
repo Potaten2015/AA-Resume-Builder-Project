@@ -1,21 +1,14 @@
 const SAVE_USER = 'user/SAVE_USER'
 const LOGOUT_USER = 'user/LOGOUT_USER'
-// const LOGIN_USER = 'user/LOGIN_USER'
 
-const save_user = user => ({
-    type: SAVE_USER,
-    user
-})
+const save_user = (user) => ({
+  type: SAVE_USER,
+  user,
+});
 
 const logout_user = () => ({
     type: LOGOUT_USER,
 })
-
-// const login_user = user => ({
-//     type: LOGIN_USER,
-//     user
-// })
-
 
 export const saveUser = (user) => async dispatch =>{
     await dispatch(save_user(user))
@@ -40,7 +33,7 @@ const userReducer = (state = null, action) => {
     let newState;
     switch(action.type) {
         case SAVE_USER: {
-            newState = state;
+            newState = Object.assign({}, state);
             newState = action.user;
             return newState;
         }
@@ -55,6 +48,7 @@ const userReducer = (state = null, action) => {
         default:
             return state
     }
-}
+
+};
 
 export default userReducer;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "./Management.css"
-import * as resumeActions from "../../store/resume";
+import React, { useEffect, useState } from 'react';
+import './Management.css';
+import * as resumeActions from '../../store/resume';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Management = () => {
