@@ -22,6 +22,7 @@ export const clearResumes = () => async (dispatch) => {
 };
 
 const resumeReducer = (state = {}, action) => {
+
   let newState;
   switch (action.type) {
     case LOAD_RESUMES: {
