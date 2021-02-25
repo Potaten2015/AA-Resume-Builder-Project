@@ -19,9 +19,10 @@ const EditingPage = () => {
       <div className="editing-page-outer">
         <div className="editing-page-form-container">
           <h1>Editing Resume</h1>
-          <form>
-          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
+          <form className="editing-page-form">
+            <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
           </form>
+          <button className="editing-page-save-button">Save Resume</button>
         </div>
         <div className="editing-page-preview-container">
           <h1>Resume Preview</h1>

@@ -11,6 +11,12 @@
   background-color: white;
 }
 
+.template-solo-form {
+  width: 30vw;
+  height: max-content;
+  background-color: white;
+}
+
 .template-header-flex {
   display: flex;
   width: 100%;

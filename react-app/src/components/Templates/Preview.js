@@ -114,27 +114,41 @@ const Preview = ({template_name, template, values, preview, form, setValues}) =>
         }
     }
 
-    return preview ? (
-        <>
-            {template_name}
-            <div className="template-solo">
-            {Object.keys(sections).map(section => {
-                return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
-            })}
-            </div>
-        </>
-      ) : (
-        <div>
-            {template_name}
-            <div className="template-solo">
-            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
+    if(preview && !form){
+        return (
+            <>
+                <div className="template-solo">
                 {Object.keys(sections).map(section => {
-                    return <ResumeSection section={sections[section]} values={templateValues} form={form} setValues={setValues}/>
+                    return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
                 })}
-            </NavLink>
+                </div>
+            </>
+          )
+    } else if (preview && form){
+        return (
+            <>
+                <div className="template-solo-form">
+                {Object.keys(sections).map(section => {
+                    return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
+                })}
+                </div>
+            </>
+          )
+    } else {
+        return (
+            <div>
+                {template_name}
+                <div className="template-solo">
+                <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
+                    {Object.keys(sections).map(section => {
+                        return <ResumeSection section={sections[section]} values={templateValues} form={form} setValues={setValues}/>
+                    })}
+                </NavLink>
+                </div>
             </div>
-        </div>
-      )
+          )
+    }
+
 }
 
 export default Preview;
