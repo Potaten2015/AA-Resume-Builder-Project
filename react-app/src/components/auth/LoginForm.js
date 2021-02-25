@@ -51,7 +51,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             placeholder="Email"
             value={email}
             onChange={updateEmail}
-            className="p-1 mt-2 mb-2 text-accentDark placeholder-accentLight"
+            className="p-1 mt-2 mb-2 outline-none text-accentDark placeholder-accentLight"
           />
         </div>
         <div>
@@ -61,7 +61,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             placeholder="Password"
             value={password}
             onChange={updatePassword}
-            className="p-1 mt-2 mb-2 text-accentDark placeholder-accentLight"
+            className="p-1 mt-2 mb-2 outline-none text-accentDark placeholder-accentLight"
           />
           <br />
           <button

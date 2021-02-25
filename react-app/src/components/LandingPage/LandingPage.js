@@ -14,25 +14,24 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
     <div className="m-4">
       <div className="text-center pt-4 bg-main mb-2 pb-4 ">
         <h1 className="text-6xl text-accentDark">Resume Builder</h1>
-        <div className="flex flex-row space-around justify-center text-accentDark text-xl">
+        <div className="flex flex-row space-around justify-center text-accentDark text-2xl">
           <p className="p-2 transform hover:scale-105 cursor-pointer">About</p>
           <p className="pt-2"> | </p>
           <p className="p-2 transform hover:scale-105 cursor-pointer">Log In</p>
         </div>
       </div>
       <div id="splash">
-        <div>
+        <div className="w-full overflow-hidden">
           <img src={splashImage} alt="This is a splash image" />
         </div>
       </div>
-
       <div
         id="interaction-box"
-        className="grid grid-cols-2 bg-main mt-2 mb-4 p-4"
+        className="grid grid-cols-3 bg-main mt-2 mb-4 p-4"
       >
         <div
           id="forms"
-          className="bg-accentLight45 p-4 m-2 flex flex-col justify-center items-center"
+          className="bg-accentLight45 col-start-1 col-end-2 p-4 m-2 flex flex-col justify-center items-center"
         >
           <Switch>
             <Route path="/login" exact>
@@ -76,7 +75,10 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
 
-        <div id="style-wheel" className="bg-accentLight p-4 m-2">
+        <div
+          id="style-wheel"
+          className="bg-accentLight p-4 m-2 col-start-2 col-end-4"
+        >
           <h1>Style previewer</h1>
           <img src={testerResume} alt="This is a test image" />
         </div>
