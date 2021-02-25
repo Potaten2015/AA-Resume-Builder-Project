@@ -82,7 +82,9 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
           <h1 className="text-4xl text-accentDark font-semibold mb-3 text-center">
             Some of our Resume style Templates!
           </h1>
-          <img src={testerResume} alt="This is a test image" />
+          <div className="flex justify-center">
+            <img src={testerResume} alt="This is a test image" />
+          </div>
         </div>
       </div>
     </div>
