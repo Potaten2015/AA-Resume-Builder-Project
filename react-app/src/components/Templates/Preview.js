@@ -4,11 +4,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import {updateCurrentTemplate} from '../../store/template'
 import ResumeSection from '../ResumeSection'
 
-const Preview = ({template_name, template}) => {
+const Preview = ({template_name, template, values, preview}) => {
+
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
     const sections = {};
+    const templateValues = {};
     let sectionCount = 1;
     let currentSection;
     let previousSection = null;
@@ -98,6 +100,10 @@ const Preview = ({template_name, template}) => {
             default: currentSection = "text"
         }
 
+        field.order=i
+
+        if(preview) templateValues[i] = null;
+
         if(previousSection == currentSection) {
             sections[totalSectionCount].fields.push(field)
         } else {
@@ -108,13 +114,24 @@ const Preview = ({template_name, template}) => {
         }
     }
 
-    return (
+    return preview ? (
         <div>
             {template_name}
             <div className="template-solo">
-            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate(template))}>
+            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
                 {Object.keys(sections).map(section => {
-                    return <ResumeSection section={sections[section]} />
+                    return <ResumeSection section={sections[section]} values={values} />
+                })}
+            </NavLink>
+            </div>
+        </div>
+      ) : (
+        <div>
+            {template_name}
+            <div className="template-solo">
+            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
+                {Object.keys(sections).map(section => {
+                    return <ResumeSection section={sections[section]} values={templateValues} />
                 })}
             </NavLink>
             </div>
