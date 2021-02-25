@@ -16,19 +16,16 @@ const Management = () => {
 
   return (
     <>
-      <h1 className="text-2xl bg-gray-200 p-4 font-sans font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Your Resumes</h1>
-      <div className="resume-container inset-x-2.5 flex flex-wrap justify-left">
+      <h1>Management Page for {currentUser.username}</h1>
       {loaded &&
         resumes &&
         Object.values(resumes).map((resume) => {
           return (
-            <a className="w-40 m-4 h-48 max-w-48 border border-black hover:shadow-md" href={`resumes/${resume.id}`}>
+            <>
               <div dangerouslySetInnerHTML={{ __html: resume.html }} />
-            </a>
+            </>
           );
-        })
-      }
-      </div>
+        })}
     </>
   );
 };
