@@ -77,9 +77,11 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
 
         <div
           id="style-wheel"
-          className="bg-accentLight p-4 m-2 col-start-2 col-end-4"
+          className="bg-accentLight45 p-4 m-2 col-start-2 col-end-4"
         >
-          <h1>Style previewer</h1>
+          <h1 className="text-4xl text-accentDark font-semibold mb-3 text-center">
+            Some of our Resume style Templates!
+          </h1>
           <img src={testerResume} alt="This is a test image" />
         </div>
       </div>
