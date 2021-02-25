@@ -60,10 +60,14 @@ body {
   border: black solid 1px;
   width: 100%;
   min-width: fit-content;
+  margin: 2px;
+  padding: 2px;
 }
 
 .editing-page textarea {
   border: black solid 1px;
   width: 100%;
   min-width: fit-content;
+  margin: 2px;
+  padding: 2px;
 }
