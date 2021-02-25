@@ -20,3 +20,16 @@ def get_resumes():
         }
         count += 1
     return each_resume
+
+
+@resume_routes.route('/<int:id>', methods=["GET"])
+def get_resume(id):
+    resume = Resume.query.get(id)
+    single_resume = {
+        "id": resume.id,
+        "html": resume.html,
+        "user_id": resume.user_id,
+        "style_id": resume.style_id,
+    }
+    print(single_resume)
+    return single_resume
