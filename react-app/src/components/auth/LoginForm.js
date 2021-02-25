@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../services/auth';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { login } from "../../services/auth";
 import * as userActions from "../../store/user";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
-  const { saveUser }  = userActions
-  const dispatch = useDispatch()
-  
+  const { saveUser } = userActions;
+  const dispatch = useDispatch();
+
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
-      dispatch(saveUser(user))
+      dispatch(saveUser(user));
     } else {
       setErrors(user.errors);
     }
@@ -44,7 +44,13 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input name="email" type="text" placeholder="Email" value={email} onChange={updateEmail} />
+        <input
+          name="email"
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={updateEmail}
+        />
       </div>
       <div>
         <label htmlFor="password">Password</label>
@@ -55,7 +61,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
   );
