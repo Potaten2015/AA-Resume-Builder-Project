@@ -19,7 +19,9 @@ const Resume = () => {
         <>
             {loaded &&
                 resume &&
-                    <div dangerouslySetInnerHTML={{ __html: resume.html }} />
+                <div className="resume_space block">
+                    <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
+                </div>
             }
         </>
     );
