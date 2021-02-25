@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-import { authenticate } from './services/auth';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import NavBar from "./components/NavBar";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UsersList from "./components/UsersList";
+import User from "./components/User";
+import { authenticate } from "./services/auth";
 
 // Component import line
-import { LandingPage, MainPage, Templates, Management, ResumeForm } from './components';
-import EditingPage from './components/EditingPage/EditingPage';
-import { saveUser } from './store/user';
+import { LandingPage, MainPage, Templates, Management } from "./components";
+import EditingPage from "./components/EditingPage/EditingPage";
+import { saveUser } from "./store/user";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -36,21 +35,25 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
+      {authenticated && (
+        <NavBar
+          setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+        />
+      )}
       <Switch>
-        <Route exact path="/">
-          <LandingPage authenticated={authenticated} />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users"
+          exact={true}
+          authenticated={authenticated}
+        >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users/:userId"
+          exact={true}
+          authenticated={authenticated}
+        >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
@@ -59,15 +62,33 @@ function App() {
         <ProtectedRoute path="/main" exact={true} authenticated={authenticated}>
           <MainPage />
         </ProtectedRoute>
-        <ProtectedRoute path="/resumes" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/resumes"
+          exact={true}
+          authenticated={authenticated}
+        >
           <Management />
         </ProtectedRoute>
-        <ProtectedRoute path="/templates" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/templates"
+          exact={true}
+          authenticated={authenticated}
+        >
           <Templates />
         </ProtectedRoute>
-        <ProtectedRoute path="/resume/:userId/create" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/resume/:userId/create"
+          exact={true}
+          authenticated={authenticated}
+        >
           <EditingPage />
         </ProtectedRoute>
+        <Route path="/">
+          <LandingPage
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

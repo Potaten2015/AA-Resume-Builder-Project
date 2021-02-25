@@ -16,16 +16,18 @@ const Management = () => {
 
   return (
     <>
-      <h1>Management Page for {currentUser.username}</h1>
-      {loaded &&
-        resumes &&
-        Object.values(resumes).map((resume) => {
-          return (
-            <>
-              <div dangerouslySetInnerHTML={{ __html: resume.html }} />
-            </>
-          );
-        })}
+      <h1 className="text-2xl z-10 relative bg-gray-200 p-4 font-sans font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Your Resumes</h1>
+      <div className="resume-container relative z-20 inset-x-2.5 flex flex-wrap justify-left">
+        {loaded &&
+          resumes &&
+          Object.values(resumes).map((resume) => {
+            return (
+              <>
+                <div dangerouslySetInnerHTML={{ __html: resume.html }} />
+              </>
+            );
+          })}
+        </div>
     </>
   );
 };
