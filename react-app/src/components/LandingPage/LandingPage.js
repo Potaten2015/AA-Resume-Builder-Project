@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { LoginForm, SignUpForm } from "../auth";
 
 import splashImage from "./splash.jpg";
+import testerResume from "./test-img.png";
 
 const LandingPage = ({ authenticated, setAuthenticated }) => {
   if (authenticated) {
@@ -25,8 +26,14 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
         </div>
       </div>
 
-      <div id="interaction-box">
-        <div id="forms">
+      <div
+        id="interaction-box"
+        className="grid grid-cols-2 bg-main mt-2 mb-4 p-4"
+      >
+        <div
+          id="forms"
+          className="bg-accentLight45 p-4 m-2 flex flex-col justify-center items-center"
+        >
           <Switch>
             <Route path="/login" exact>
               <LoginForm
@@ -41,16 +48,37 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
               />
             </Route>
           </Switch>
-          <NavLink to="/sign-up" exact={true}>
-            Sign Up
-          </NavLink>
-          <NavLink to="/login" exact={true}>
-            Login
-          </NavLink>
+          <div className="flex flex-row m-2 text-lg text-accentDark font-bold">
+            <NavLink
+              to="/sign-up"
+              exact={true}
+              className="p-2 transform hover:scale-105 cursor-pointer"
+            >
+              Sign Up
+            </NavLink>
+            <p className="pt-2"> | </p>
+            <NavLink
+              to="/login"
+              exact={true}
+              className="p-2 transform hover:scale-105 cursor-pointer"
+            >
+              Log In
+            </NavLink>
+            <p className="pt-2"> | </p>
+            <NavLink
+              to="/login"
+              exact={true}
+              className="p-2 transform hover:scale-105 cursor-pointer"
+              disabled={true}
+            >
+              Demo User
+            </NavLink>
+          </div>
         </div>
 
-        <div id="style-wheel">
+        <div id="style-wheel" className="bg-accentLight p-4 m-2">
           <h1>Style previewer</h1>
+          <img src={testerResume} alt="This is a test image" />
         </div>
       </div>
     </div>

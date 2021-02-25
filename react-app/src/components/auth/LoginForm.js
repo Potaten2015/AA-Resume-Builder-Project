@@ -36,34 +36,43 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    <div>
+      <h1 className="text-4xl text-accentDark font-semibold mb-3">Log In</h1>
+      <form onSubmit={onLogin} className="text-xl">
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+            className="p-1 mt-2 mb-2 text-accentDark placeholder-accentLight"
+          />
+        </div>
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+            className="p-1 mt-2 mb-2 text-accentDark placeholder-accentLight"
+          />
+          <br />
+          <button
+            type="submit"
+            className="transform hover:scale-105 cursor-pointer text-accentDark font-bold"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
