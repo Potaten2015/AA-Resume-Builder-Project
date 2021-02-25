@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {updateCurrentTemplate} from '../../store/template'
 import ResumeSection from '../ResumeSection'
 
-const Preview = ({template_name, template, values, preview}) => {
+const Preview = ({template_name, template, values, preview, form, setValues}) => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
@@ -102,7 +102,7 @@ const Preview = ({template_name, template, values, preview}) => {
 
         field.order=i
 
-        if(preview) templateValues[i] = null;
+        if(preview && !form) templateValues[i] = null;
 
         if(previousSection == currentSection) {
             sections[totalSectionCount].fields.push(field)
@@ -115,23 +115,21 @@ const Preview = ({template_name, template, values, preview}) => {
     }
 
     return preview ? (
-        <div>
+        <>
             {template_name}
             <div className="template-solo">
-            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
-                {Object.keys(sections).map(section => {
-                    return <ResumeSection section={sections[section]} values={values} />
-                })}
-            </NavLink>
+            {Object.keys(sections).map(section => {
+                return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
+            })}
             </div>
-        </div>
+        </>
       ) : (
         <div>
             {template_name}
             <div className="template-solo">
             <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
                 {Object.keys(sections).map(section => {
-                    return <ResumeSection section={sections[section]} values={templateValues} />
+                    return <ResumeSection section={sections[section]} values={templateValues} form={form} setValues={setValues}/>
                 })}
             </NavLink>
             </div>

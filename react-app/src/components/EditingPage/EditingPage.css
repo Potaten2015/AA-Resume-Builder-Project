@@ -33,13 +33,37 @@ body {
 .editing-page-form-container {
   width: 49%;
   height: 100%;
-  background-color: blue;
   color: black;
 }
 
 .editing-page-preview-container {
   width: 49%;
   height: 100%;
-  background-color: Green;
-  color: white;
+  color: #7abacc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.editing-page-form-container {
+  width: 49%;
+  height: 100%;
+  color: #7abacc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.editing-page input {
+  border: black solid 1px;
+  width: 100%;
+  min-width: fit-content;
+}
+
+.editing-page textarea {
+  border: black solid 1px;
+  width: 100%;
+  min-width: fit-content;
 }

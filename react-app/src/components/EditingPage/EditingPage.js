@@ -12,7 +12,6 @@ const EditingPage = () => {
   for (let i = 0; i < current_template.length; i++) {
     valueHolder[i] = '';
   }
-  console.log('VALUE HOLDER', valueHolder);
   const [values, setValues] = useState(valueHolder);
 
   return (
@@ -21,26 +20,12 @@ const EditingPage = () => {
         <div className="editing-page-form-container">
           <h1>Editing Resume</h1>
           <form>
-            {current_template.map((field, index) => {
-              // console.log('VALUES', values);
-              return (
-                <div>
-                  <EditHelper
-                    field={field}
-                    form={true}
-                    value={values[index]}
-                    setValues={setValues}
-                    number={index}
-                    valueHolder={valueHolder}
-                  />
-                </div>
-              );
-            })}
+          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
           </form>
         </div>
         <div className="editing-page-preview-container">
           <h1>Resume Preview</h1>
-          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} />
+          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues}/>
         </div>
       </div>
     </div>
