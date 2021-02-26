@@ -14,7 +14,7 @@ const Resume = () => {
 
     useEffect(() => {
         dispatch(getOneResume(resumeId)).then(() => setLoaded(true));
-    }, [dispatch]);
+    }, [dispatch, getOneResume, resumeId]);
 
     return (
         <>

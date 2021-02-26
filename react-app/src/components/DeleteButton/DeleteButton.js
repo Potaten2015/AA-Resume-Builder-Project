@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, } from 'react';
 import * as resumeActions from '../../store/resume';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const DeleteButton = () => {
     const { resumeId } = useParams()
-    const { deleteAResume } = resumeActions;
+    const [loaded, setLoaded] = useState(false);
+    const { deleteAResume, getResumes } = resumeActions;
     const dispatch = useDispatch();
+    const history = useHistory()
 
     const byeResume = async(e) => {
-        await dispatch(deleteAResume(resumeId));
+        await dispatch(deleteAResume(resumeId))
+            .then(dispatch(getResumes()))
+            .then(() => setLoaded(true))
+            .then(history.push('/resumes'))
     }
 
     return (
