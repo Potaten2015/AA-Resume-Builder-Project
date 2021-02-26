@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, db, Resume
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -32,3 +32,11 @@ def get_resume(id):
         "style_id": resume.style_id,
     }
     return single_resume
+
+
+@resume_routes.route('/delete/<int:id>', methods=["POST"])
+def delete_resume(id):
+    deleted_resume = Resume.query.get(id)
+    db.session.delete(deleted_resume)
+    db.session.commit()
+    return redirect("/")

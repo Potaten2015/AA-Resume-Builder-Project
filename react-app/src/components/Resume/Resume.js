@@ -3,6 +3,7 @@ import './Resume.css';
 import * as resumeActions from '../../store/resume';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import DeleteButton from '../DeleteButton/DeleteButton'
 
 const Resume = () => {
     const { resumeId } = useParams()
@@ -19,9 +20,14 @@ const Resume = () => {
         <>
             {loaded &&
                 resume &&
-                <div className="resume_space block">
-                    <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
-                </div>
+                <>
+                    <div className="resume_space block">
+                        <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
+                    </div>
+                    <div className="relative bottom-6 left-24">
+                        <DeleteButton />
+                    </div>
+                </>
             }
         </>
     );
