@@ -15,7 +15,9 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
       <div className="text-center pt-4 bg-main mb-2 pb-4 ">
         <h1 className="text-6xl text-accentDark">Resume Builder</h1>
         <div className="flex flex-row space-around justify-center text-accentDark text-2xl">
-          <p className="p-2 transform hover:scale-105 cursor-pointer">About</p>
+          <p className="p-2 transform hover:scale-105 cursor-pointer">
+            About Us
+          </p>
           <p className="pt-2"> | </p>
           <p className="p-2 transform hover:scale-105 cursor-pointer">Log In</p>
         </div>
@@ -29,49 +31,75 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
         id="interaction-box"
         className="grid grid-cols-3 bg-main mt-2 mb-4 p-4"
       >
-        <div
-          id="forms"
-          className="bg-accentLight45 col-start-1 col-end-2 p-4 m-2 flex flex-col justify-center items-center"
-        >
-          <Switch>
-            <Route path="/login" exact>
-              <LoginForm
-                authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-            <Route path="/sign-up" exact>
-              <SignUpForm
-                authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-          </Switch>
-          <div className="flex flex-row m-2 text-lg text-accentDark font-bold">
-            <NavLink
-              to="/sign-up"
-              exact={true}
-              className="p-2 transform hover:scale-105 cursor-pointer"
-            >
-              Sign Up
-            </NavLink>
-            <p className="pt-2"> | </p>
-            <NavLink
-              to="/login"
-              exact={true}
-              className="p-2 transform hover:scale-105 cursor-pointer"
-            >
-              Log In
-            </NavLink>
-            <p className="pt-2"> | </p>
-            <NavLink
-              to="/login"
-              exact={true}
-              className="p-2 transform hover:scale-105 cursor-pointer"
-              disabled={true}
-            >
-              Demo User
-            </NavLink>
+        <div id="forms-and-description" className="grid grid-rows-2">
+          <div
+            id="project-description"
+            className="bg-accentLight45 p-4 m-2 flex flex-col justify-center items-center"
+          >
+            <div>
+              <p className="text-4xl text-accentDark font-semibold mb-5 text-center">
+                Welcome Job Hunters!
+              </p>
+              <p className="text-xl text-accentDark p-4 ml-2 mr-2">
+                We built this application to streamline the admittedly terrible
+                experience of online resume builders.
+              </p>
+              <p className="text-xl text-accentDark p-4 ml-2 mr-2">
+                We aren't going to charge you, email you, or spam ads at you :)
+              </p>
+              <p className="text-xl text-accentDark p-4 ml-2 mr-2">
+                This is totally free and open source; built by job hunters for
+                job hunters. We hope you find it helpful!
+              </p>
+              <p className="p-2 transform hover:scale-105 cursor-pointer text-center text-accentDark text-2xl font-medium">
+                About Us
+              </p>
+            </div>
+          </div>
+          <div
+            id="forms"
+            className="bg-accentLight45 col-start-1 col-end-2 p-4 m-2 flex flex-col justify-center items-center"
+          >
+            <Switch>
+              <Route path="/login" exact>
+                <LoginForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <Route path="/sign-up" exact>
+                <SignUpForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+            </Switch>
+            <div className="flex flex-row m-2 text-lg text-accentDark font-bold">
+              <NavLink
+                to="/sign-up"
+                exact={true}
+                className="p-2 transform hover:scale-105 cursor-pointer"
+              >
+                Sign Up
+              </NavLink>
+              <p className="pt-2"> | </p>
+              <NavLink
+                to="/login"
+                exact={true}
+                className="p-2 transform hover:scale-105 cursor-pointer"
+              >
+                Log In
+              </NavLink>
+              <p className="pt-2"> | </p>
+              <NavLink
+                to="/login"
+                exact={true}
+                className="p-2 transform hover:scale-105 cursor-pointer"
+                disabled={true}
+              >
+                Demo User
+              </NavLink>
+            </div>
           </div>
         </div>
 
