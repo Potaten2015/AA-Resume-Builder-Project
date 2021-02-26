@@ -18,5 +18,5 @@ def get_templates():
         for template_default_tag in template.template_default_tags:
             template_resume_info[template.name]["default_tags"].append(template_default_tag.default_tags.name)
         for pair in field_tuples:
-            template_resume_info[template.name]["field_data"].append({"name":template.template_fields[pair[1]].field.name, "placeholder": template.template_fields[pair[1]].field.placeholder})
+            template_resume_info[template.name]["field_data"].append({"name":template.template_fields[pair[1]].field.name, "placeholder": template.template_fields[pair[1]].field.placeholder, "field_id": template.template_fields[pair[1]].field.id})
     return template_resume_info

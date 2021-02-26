@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Resume
+from app.models import User, db, Resume, Resume_Field
 from flask_login import current_user, login_user, logout_user, login_required
 
 resume_routes = Blueprint('resumes', __name__)
@@ -32,3 +32,25 @@ def get_resume(id):
         "style_id": resume.style_id,
     }
     return single_resume
+
+@resume_routes.route('/save', methods=["POST"])
+def save_resume():
+
+    resumeData = request.json
+    print(resumeData)
+
+    resume = Resume(html="<h1>HTML FOR RESUME</h1>", user_id=resumeData["user_id"], style_id=resumeData["style_id"])
+
+    db.session.add(resume)
+    db.session.commit()
+    db.session.flush()
+
+    print("RESUME _________------ ", resume.id)
+
+    for field in resumeData["fields"]:
+        print(field)
+        db.session.add(Resume_Field(resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"]))
+
+    db.session.commit()
+
+    return {"MESSAGE": "SUCCESSFULLY CREATED RESUME"}

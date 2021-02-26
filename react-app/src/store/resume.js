@@ -27,6 +27,16 @@ export const clearResumes = () => async (dispatch) => {
   return;
 };
 
+export const saveResumes = (resumeData) => async (dispatch) => {
+  const response = await fetch(`/api/resumes/save`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(resumeData)
+  })
+}
+
 const resumeReducer = (state = {}, action) => {
 
   let newState;
