@@ -16,6 +16,12 @@ export const getResumes = () => async (dispatch) => {
   dispatch(resume_loading(res));
 };
 
+export const getOneResume = (id) => async (dispatch) => {
+  const response = await fetch(`/api/resumes/${id}`);
+  const res = await response.json();
+  dispatch(resume_loading(res));
+};
+
 export const clearResumes = () => async (dispatch) => {
   await dispatch(clear_resumes());
   return;

@@ -22,12 +22,13 @@ const Management = () => {
           resumes &&
           Object.values(resumes).map((resume) => {
             return (
-              <>
+              <a className="w-40 m-4 h-48 max-w-48 border border-black hover:shadow-md" href={`resumes/${resume.id}`}>
                 <div dangerouslySetInnerHTML={{ __html: resume.html }} />
-              </>
+              </a>
             );
-          })}
-        </div>
+          })
+        }
+      </div>
     </>
   );
 };
