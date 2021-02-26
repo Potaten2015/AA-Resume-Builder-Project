@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateCurrentTemplate } from '../../store/template';
 import ResumeSection from '../ResumeSection';
 
+<<<<<<< HEAD
 const Preview = ({ template_name, template, values, preview }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+=======
+const Preview = ({template_name, template, values, preview, form, setValues}) => {
+>>>>>>> main
 
   const sections = {};
   const templateValues = {};
@@ -101,7 +105,11 @@ const Preview = ({ template_name, template, values, preview }) => {
 
     field.order = i;
 
+<<<<<<< HEAD
     if (preview) templateValues[i] = null;
+=======
+        if(preview && !form) templateValues[i] = null;
+>>>>>>> main
 
     if (previousSection == currentSection) {
       sections[totalSectionCount].fields.push(field);
@@ -113,6 +121,7 @@ const Preview = ({ template_name, template, values, preview }) => {
     }
   }
 
+<<<<<<< HEAD
   return preview ? (
     <div>
       {template_name}
@@ -147,5 +156,43 @@ const Preview = ({ template_name, template, values, preview }) => {
     </div>
   );
 };
+=======
+    if(preview && !form){
+        return (
+            <>
+                <div className="template-solo">
+                {Object.keys(sections).map(section => {
+                    return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
+                })}
+                </div>
+            </>
+          )
+    } else if (preview && form){
+        return (
+            <>
+                <div className="template-solo-form">
+                {Object.keys(sections).map(section => {
+                    return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues}/>
+                })}
+                </div>
+            </>
+          )
+    } else {
+        return (
+            <div>
+                {template_name}
+                <div className="template-solo">
+                <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
+                    {Object.keys(sections).map(section => {
+                        return <ResumeSection section={sections[section]} values={templateValues} form={form} setValues={setValues}/>
+                    })}
+                </NavLink>
+                </div>
+            </div>
+          )
+    }
+
+}
+>>>>>>> main
 
 export default Preview;

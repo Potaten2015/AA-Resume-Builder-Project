@@ -5,21 +5,25 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
   if (form) {
     switch (field.name) {
       case 'full_name':
+        returnField = (
+          <h1 className="header-name">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </h1>
+        );
+        break;
       case 'github':
-      case 'city':
-      case 'phone_number':
-      case 'linkedin':
-      case 'intro_header':
-      case 'intro_skill':
-      case 'experience_company':
-      case 'experience_city':
-      case 'experience_date':
-      case 'experience_title':
-      case 'education_facility':
-      case 'education_degree':
-      case 'education_graduation_date':
-      case 'education_gpa':
-      case 'education_minor':
         returnField = (
           <input
             type="text"
@@ -34,6 +38,266 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
             }}
             placeholder={field.placeholder}
           />
+        );
+        break;
+      case 'city':
+        returnField = (
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => {
+              e.persist();
+              setValues((prev) => {
+                let newState = Object.assign({}, prev);
+                newState[number] = e.target.value;
+                return newState;
+              });
+            }}
+            placeholder={field.placeholder}
+          />
+        );
+        break;
+      case 'phone_number':
+        returnField = (
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => {
+              e.persist();
+              setValues((prev) => {
+                let newState = Object.assign({}, prev);
+                newState[number] = e.target.value;
+                return newState;
+              });
+            }}
+            placeholder={field.placeholder}
+          />
+        );
+        break;
+      case 'linkedin':
+        returnField = (
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => {
+              e.persist();
+              setValues((prev) => {
+                let newState = Object.assign({}, prev);
+                newState[number] = e.target.value;
+                return newState;
+              });
+            }}
+            placeholder={field.placeholder}
+          />
+        );
+        break;
+      case 'intro_header':
+        returnField = (
+          <h2 className="intro-header">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </h2>
+        );
+        break;
+      case 'intro_skill':
+        returnField = (
+          <div className="intro-skill">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </div>
+        );
+        break;
+      case 'experience_company':
+        returnField = (
+          <h2 className="company-name">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </h2>
+        );
+        break;
+      case 'experience_city':
+        returnField = (
+          <p className="company-city">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
+        );
+        break;
+      case 'experience_date':
+        returnField = (
+          <p className="company-date">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
+        );
+        break;
+      case 'experience_title':
+        returnField = (
+          <h2 className="role-title">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </h2>
+        );
+        break;
+      case 'education_facility':
+        returnField = (
+          <h2 className="education-facility">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </h2>
+        );
+        break;
+      case 'education_degree':
+        returnField = (
+          <p className="education-degree">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
+        );
+        break;
+      case 'education_graduation_date':
+        returnField = (
+          <p className="education-graduation-date">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
+        );
+        break;
+      case 'education_gpa':
+        returnField = (
+          <p className="education-gpa">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
+        );
+        break;
+      case 'education_minor':
+        returnField = (
+          <p className="education-minor">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            />
+          </p>
         );
         break;
       case 'email':
@@ -54,22 +318,75 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         );
         break;
       case 'intro_mission':
+        returnField = (
+          <p className="intro-mission">
+            <textarea
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            ></textarea>
+          </p>
+        );
+        break;
       case 'intro_long':
+        returnField = (
+          <p className="intro-long">
+            <textarea
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            ></textarea>
+          </p>
+        );
+        break;
       case 'experience_description':
+        returnField = (
+          <p className="experience-description">
+            <textarea
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            ></textarea>
+          </p>
+        );
+        break;
       case 'experience_responsibility':
         returnField = (
-          <textarea
-            value={value}
-            onChange={(e) => {
-              e.persist();
-              setValues((prev) => {
-                let newState = Object.assign({}, prev);
-                newState[number] = e.target.value;
-                return newState;
-              });
-            }}
-            placeholder={field.placeholder}
-          ></textarea>
+          <div className="experience-responsibility">
+            <textarea
+              value={value}
+              onChange={(e) => {
+                e.persist();
+                setValues((prev) => {
+                  let newState = Object.assign({}, prev);
+                  newState[number] = e.target.value;
+                  return newState;
+                });
+              }}
+              placeholder={field.placeholder}
+            ></textarea>
+          </div>
         );
         break;
       default:
