@@ -6,7 +6,15 @@
 }
 
 .template-solo {
-  border: dashed black 2px;
+  width: 30vw;
+  height: 38.82vw;
+  background-color: white;
+}
+
+.template-solo-form {
+  width: 30vw;
+  height: max-content;
+  background-color: white;
 }
 
 .template-header-flex {
