@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {updateCurrentTemplate} from '../../store/template'
 import ResumeSection from '../ResumeSection'
 
-const Preview = ({template_name, template, values, preview, form, setValues}) => {
+const Preview = ({template_name, template, values, preview, form, setValues, tags}) => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
@@ -138,6 +138,10 @@ const Preview = ({template_name, template, values, preview, form, setValues}) =>
         return (
             <div>
                 {template_name}
+                <div>
+                    <p>Tags - </p>
+                    {tags.map(tag => <p> {tag} </p>)}
+                </div>
                 <div className="template-solo">
                 <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
                     {Object.keys(sections).map(section => {
