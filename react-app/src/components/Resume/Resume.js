@@ -23,9 +23,9 @@ const Resume = () => {
                 <>
                     <div className="resume_space block">
                         <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
-                    </div>
-                    <div className="relative bottom-6 left-24">
-                        <DeleteButton />
+                        <div className="relative top-6">
+                            <DeleteButton />
+                        </div>
                     </div>
                 </>
             }

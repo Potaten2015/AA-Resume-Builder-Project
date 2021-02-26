@@ -29,16 +29,10 @@ export const getOneResume = (id) => async (dispatch) => {
 };
 
 export const deleteAResume = (id) => async (dispatch) => {
-  console.log("I")
   const response = await fetch(`/api/resumes/delete/${id}`, {
     method: "DELETE"
   });
-  console.log("II")
-  debugger
-  console.log("III")
   const res = await response.json();
-  debugger
-  console.log("IV")
   dispatch(delete_resume(res));
 }
 
@@ -63,7 +57,6 @@ const resumeReducer = (state = {}, action) => {
     case DELETE_RESUME: {
       newState = {};
       newState.resume = action.id;
-      debugger
       return newState;
     }
     default:
