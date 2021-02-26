@@ -11,3 +11,4 @@ class Resume(db.Model):
     user = db.relationship("User", back_populates="resumes")
     style = db.relationship("Style", back_populates="resumes")
     user_resume_tags = db.relationship("User_Resume_Tag", back_populates="resume")
+    resume_fields = db.relationship("Resume_Field", back_populates="resume")
