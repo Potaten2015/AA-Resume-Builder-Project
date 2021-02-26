@@ -31,5 +31,5 @@ def get_resume(id):
         "user_id": resume.user_id,
         "style_id": resume.style_id,
     }
-    print(single_resume)
+    print("RHUQWFAGSKHUEAGSBHUEIHWGASUHIHWAUHSIHFHWEAUIHFUIEAHSHFUIQWEHSUIAWESZB", single_resume)
     return single_resume

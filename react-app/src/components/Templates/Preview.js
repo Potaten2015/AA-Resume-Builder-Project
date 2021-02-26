@@ -1,14 +1,16 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import {updateCurrentTemplate} from '../../store/template'
+import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateCurrentTemplate } from '../../store/template'
 import ResumeSection from '../ResumeSection'
 
-const Preview = ({template_name, template}) => {
+const Preview = ({ template_name, template, values, preview, form, setValues }) => {
+
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
     const sections = {};
+    const templateValues = {};
     let sectionCount = 1;
     let currentSection;
     let previousSection = null;
@@ -19,7 +21,7 @@ const Preview = ({template_name, template}) => {
         previousSection = currentSection;
 
         const field = template[i]
-        switch(field.name) {
+        switch (field.name) {
             case "full_name":
                 currentSection = "header"
                 break;
@@ -42,8 +44,8 @@ const Preview = ({template_name, template}) => {
                 currentSection = "introSkill"
                 break;
             case "experience_company":
-                if(currentSection.includes('experience')) {
-                    sectionCount ++;
+                if (currentSection.includes('experience')) {
+                    sectionCount++;
                     currentSection = "experienceHeader" + sectionCount.toString()
                 } else {
                     sectionCount = 1;
@@ -60,8 +62,8 @@ const Preview = ({template_name, template}) => {
                 currentSection = "experience" + sectionCount.toString()
                 break;
             case "education_facility":
-                if(currentSection.includes('education')) {
-                    sectionCount ++;
+                if (currentSection.includes('education')) {
+                    sectionCount++;
                     currentSection = "education" + sectionCount.toString()
                 } else {
                     sectionCount = 1;
@@ -98,7 +100,11 @@ const Preview = ({template_name, template}) => {
             default: currentSection = "text"
         }
 
-        if(previousSection == currentSection) {
+        field.order = i
+
+        if (preview && !form) templateValues[i] = null;
+
+        if (previousSection == currentSection) {
             sections[totalSectionCount].fields.push(field)
         } else {
             totalSectionCount++;
@@ -108,18 +114,41 @@ const Preview = ({template_name, template}) => {
         }
     }
 
-    return (
-        <div>
-            {template_name}
-            <div className="template-solo">
-            <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate(template))}>
-                {Object.keys(sections).map(section => {
-                    return <ResumeSection section={sections[section]} />
-                })}
-            </NavLink>
+    if (preview && !form) {
+        return (
+            <>
+                <div className="template-solo">
+                    {Object.keys(sections).map(section => {
+                        return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues} />
+                    })}
+                </div>
+            </>
+        )
+    } else if (preview && form) {
+        return (
+            <>
+                <div className="template-solo-form">
+                    {Object.keys(sections).map(section => {
+                        return <ResumeSection section={sections[section]} values={values} form={form} setValues={setValues} />
+                    })}
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <div>
+                {template_name}
+                <div className="template-solo">
+                    <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({ name: template_name, fields: template }))}>
+                        {Object.keys(sections).map(section => {
+                            return <ResumeSection section={sections[section]} values={templateValues} form={form} setValues={setValues} />
+                        })}
+                    </NavLink>
+                </div>
             </div>
-        </div>
-      )
+        )
+    }
+
 }
 
 export default Preview;

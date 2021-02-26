@@ -10,7 +10,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
           <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
               <NavLink
-                to="/"
+                to="/main"
                 exact={true}
                 activeClassName="active"
                 className="px-3 py-2 flex items-center text- uppercase font-bold leading-snug text-white hover:opacity-75"

@@ -16,9 +16,9 @@ const Templates = () => {
   let [loaded, setLoaded] = useState(false);
   const user = useSelector((state) => state.user);
 
-  useEffect(()=>{
-    dispatch(getTemplates()).then(() =>setLoaded(true));
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getTemplates()).then(() => setLoaded(true));
+  }, [dispatch])
 
 
   useEffect(() => {
@@ -31,9 +31,9 @@ const Templates = () => {
         <div className="template-page-inner">
           <h1>Templates</h1>
           <div className="template-row">
-            {loaded && templates && (Object.keys(templates).length > 0) && Object.keys(templates).map(temp_key =>{
-              const the_template=templates[temp_key]
-              return <Preview template={the_template} template_name={temp_key} />
+            {loaded && templates && (Object.keys(templates).length > 0) && Object.keys(templates).map(temp_key => {
+              const the_template = templates[temp_key]
+              return <Preview template={the_template} template_name={temp_key} preview={false} />
             })}
           </div>
         </div>
