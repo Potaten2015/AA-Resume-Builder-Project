@@ -62,7 +62,8 @@ const resumeReducer = (state = {}, action) => {
     }
     case DELETE_RESUME: {
       newState = {};
-      newState.resume = action.resumes;
+      newState.resume = action.id;
+      debugger
       return newState;
     }
     default:
