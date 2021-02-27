@@ -1,10 +1,7 @@
 const LOAD_RESUMES = 'resume/LOAD_RESUMES';
 const CLEAR_RESUMES = 'resume/CLEAR_RESUMES';
-<<<<<<< HEAD
 const EDIT_RESUMES = 'resume/EDIT_RESUMES';
-=======
 const DELETE_RESUME = 'resume/DELETE_RESUME'
->>>>>>> main
 
 const resume_loading = (resumes) => ({
   type: LOAD_RESUMES,
@@ -15,15 +12,14 @@ const clear_resumes = () => ({
   type: CLEAR_RESUMES,
 });
 
-<<<<<<< HEAD
 const edit_resumes = (resume) => ({
   type: EDIT_RESUMES,
   resume
-=======
+})
+
 const delete_resume = (id) => ({
   type: DELETE_RESUME,
   id
->>>>>>> main
 });
 
 export const getResumes = () => async (dispatch) => {
