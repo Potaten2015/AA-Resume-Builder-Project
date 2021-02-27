@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Preview from '../Templates/Preview';
 import './EditingPage.css';
 import { saveResumes } from '../../store/resume';
+import html2pdf from 'html2pdf.js';
 
 const EditingPage = () => {
   const path = window.location.pathname;
@@ -62,6 +63,12 @@ const EditingPage = () => {
     tagValue = rightNow;
   }
   const [userTags, setUserTags] = useState(tagValue);
+
+  const saveAsPDF = () => {
+    console.log('Saving as PDF...');
+    const element = document.getElementById('resume-to-save');
+    html2pdf(element);
+  };
 
   const saveResume = async (e) => {
     const resumeData = {};
@@ -127,6 +134,7 @@ const EditingPage = () => {
               <button className="editing-page-save-button" onClick={saveResume}>
                 Save Resume
               </button>
+              <button onClick={saveAsPDF}>Save as PDF</button>
             </div>
             <div className="editing-page-preview-container">
               <h1>Resume Preview</h1>
