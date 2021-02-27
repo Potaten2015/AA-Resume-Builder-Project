@@ -22,7 +22,7 @@ const Resume = () => {
                 resume &&
                 <>
                     <div className="resume_space block">
-                        <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
+                    <div className="individual_resume border border-black overflow-hidden" dangerouslySetInnerHTML={{ __html: resume.html }} />
                         <div className="relative top-6">
                             <DeleteButton />
                         </div>
