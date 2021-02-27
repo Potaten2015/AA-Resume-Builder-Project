@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Resume, Resume_Field
+from app.models import User, db, Resume, Resume_Field, User_Resume_Tag
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy.orm import joinedload
 
 resume_routes = Blueprint('resumes', __name__)
 
@@ -33,6 +34,21 @@ def get_resume(id):
     }
     return single_resume
 
+@resume_routes.route('/edit/<int:id>', methods=["GET"])
+def edit_resume(id):
+    resume = db.session.query(Resume).join(Resume.resume_fields).options(joinedload(Resume.resume_fields).joinedload(Resume_Field.field),joinedload(Resume.user_resume_tags).joinedload(User_Resume_Tag.user_tag)).filter(Resume.id==id).first()
+
+    resume_resume_info = {}
+
+    field_tuples = sorted([(resume_field.page_order - 1, index) for index, resume_field in enumerate(resume.resume_fields)], key=lambda x:x[0])
+    resume_resume_info = {"field_data": [], "user_tags": []}
+    for user_tag in resume.user_resume_tags:
+        resume_resume_info["user_tags"].append(user_tag.default_tags.name)
+    for pair in field_tuples:
+        resume_resume_info["field_data"].append({"name":resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
+
+    return resume_resume_info
+
 @resume_routes.route('/save', methods=["POST"])
 def save_resume():
 
@@ -44,8 +60,6 @@ def save_resume():
     db.session.add(resume)
     db.session.commit()
     db.session.flush()
-
-    print("RESUME _________------ ", resume.id)
 
     for field in resumeData["fields"]:
         print(field)

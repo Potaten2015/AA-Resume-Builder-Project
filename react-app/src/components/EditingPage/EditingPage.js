@@ -7,19 +7,34 @@ import {saveResumes} from '../../store/resume'
 
 const EditingPage = () => {
 
+  const href = window.location.href
+
+
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const current_template_object = useSelector((state) => state.template.current);
+  const current_template_object = useSelector((state) => state ? state.template.current : null);
+  const current_resume = useSelector((state) => state ? state.resume.resume : null);
   const user_id = useSelector(state => state.user.id)
 
-  const current_template = current_template_object.fields;
-  const current_template_name = current_template_object.name;
+  const current_template = current_template_object ? current_template_object.fields : null;
+  const current_template_name = current_template_object ? current_template_object.name : null;
 
   const valueHolder = {};
-  for (let i = 0; i < current_template.length; i++) {
-    valueHolder[i] = '';
+
+  if(current_template || current_resume.field_data){
+    if(href.includes("edit") && current_resume.field_data) {
+      for (let i = 0; i < current_resume.field_data.length; i++) {
+        // console.log(current_resume.field_data)
+        valueHolder[i] = current_resume.field_data[i].value;
+      }
+    } else if(current_template) {
+      for (let i = 0; i < current_template.length; i++) {
+        valueHolder[i] = '';
+      }
+    }
   }
+
   const [values, setValues] = useState(valueHolder);
 
   const saveResume = (e) =>{
@@ -40,7 +55,7 @@ const EditingPage = () => {
 
   }
 
-  return (
+  return current_template_object && (
     <div className="editing-page">
       <div className="editing-page-outer">
         <div className="editing-page-form-container">

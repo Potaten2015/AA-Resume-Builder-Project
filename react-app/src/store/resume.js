@@ -1,5 +1,6 @@
 const LOAD_RESUMES = 'resume/LOAD_RESUMES';
 const CLEAR_RESUMES = 'resume/CLEAR_RESUMES';
+const EDIT_RESUMES = 'resume/EDIT_RESUMES';
 
 const resume_loading = (resumes) => ({
   type: LOAD_RESUMES,
@@ -8,6 +9,11 @@ const resume_loading = (resumes) => ({
 
 const clear_resumes = () => ({
   type: CLEAR_RESUMES,
+});
+
+const edit_resumes = (resume) => ({
+  type: EDIT_RESUMES,
+  resume
 });
 
 export const getResumes = () => async (dispatch) => {
@@ -37,6 +43,14 @@ export const saveResumes = (resumeData) => async (dispatch) => {
   })
 }
 
+export const editResumes = (resumeId) => async (dispatch) => {
+  const response = await fetch(`/api/resumes/edit/${resumeId}`);
+  const res = await response.json();
+  console.log(res)
+  dispatch(edit_resumes(res));
+  return res;
+};
+
 const resumeReducer = (state = {}, action) => {
 
   let newState;
@@ -48,6 +62,11 @@ const resumeReducer = (state = {}, action) => {
     }
     case CLEAR_RESUMES: {
       newState = {};
+      return newState;
+    }
+    case EDIT_RESUMES: {
+      newState = {};
+      newState.resume = action.resume;
       return newState;
     }
     default:
