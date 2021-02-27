@@ -7,3 +7,4 @@ class Field(db.Model):
     placeholder = db.Column(db.String(1000), nullable=False)
 
     template_fields = db.relationship("Template_Field", back_populates='field')
+    resume_fields = db.relationship("Resume_Field", back_populates='field')

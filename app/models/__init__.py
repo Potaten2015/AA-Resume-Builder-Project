@@ -9,3 +9,4 @@ from .user_resume_tag import User_Resume_Tag
 from .user_tag import User_Tag
 from .template_field import Template_Field
 from .template_default_tag import Template_Default_Tag
+from .resume_field import Resume_Field

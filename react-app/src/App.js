@@ -90,6 +90,13 @@ function App() {
         >
           <EditingPage />
         </ProtectedRoute>
+        <ProtectedRoute
+          path="/resume/:userId/edit"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <EditingPage />
+        </ProtectedRoute>
         <Route path="/">
           <LandingPage
             authenticated={authenticated}

@@ -22,7 +22,6 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px black dotted;
   align-items: flex-end;
 }
 
@@ -35,7 +34,6 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px black dotted;
   font-size: 1em;
 }
 
@@ -58,7 +56,6 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px black dotted;
 }
 
 .intro-skill {

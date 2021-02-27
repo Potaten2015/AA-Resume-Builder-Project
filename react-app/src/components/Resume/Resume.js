@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './Resume.css';
 import * as resumeActions from '../../store/resume';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import DeleteButton from '../DeleteButton/DeleteButton'
 
 const Resume = () => {
     const { resumeId } = useParams()
+    const history = useHistory()
+
     const { getOneResume } = resumeActions;
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
@@ -15,6 +17,11 @@ const Resume = () => {
     useEffect(() => {
         dispatch(getOneResume(resumeId)).then(() => setLoaded(true));
     }, [dispatch, getOneResume, resumeId]);
+
+    const editResume = async (e) => {
+        await dispatch(resumeActions.editResumes(resumeId))
+        history.push('/resume/0/edit')
+    }
 
     return (
         <>
@@ -25,6 +32,7 @@ const Resume = () => {
                     <div className="individual_resume border border-black overflow-hidden" dangerouslySetInnerHTML={{ __html: resume.html }} />
                         <div className="relative top-6">
                             <DeleteButton />
+                            <button onClick={editResume}>Edit</button>
                         </div>
                     </div>
                 </>

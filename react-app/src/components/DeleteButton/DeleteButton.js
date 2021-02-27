@@ -10,15 +10,13 @@ const DeleteButton = () => {
     const dispatch = useDispatch();
     const history = useHistory()
 
-    
-    
+
+
     const byeResume = async(e) => {
         if (window.confirm('Are you sure you want to delete this resume?')) {
             // Save it!
             await dispatch(deleteAResume(resumeId))
-                .then(dispatch(getResumes()))
-                .then(() => setLoaded(true))
-                .then(history.push('/resumes'))
+                .then(() => dispatch(getResumes()).then(() => setLoaded(true)).then(() => history.push('/resumes')))
         } else {
             return
         }
