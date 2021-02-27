@@ -13,7 +13,7 @@ const DeleteButton = () => {
     
     
     const byeResume = async(e) => {
-        if (window.confirm('Are you sure you want to save this thing into the database?')) {
+        if (window.confirm('Are you sure you want to delete this resume?')) {
             // Save it!
             await dispatch(deleteAResume(resumeId))
                 .then(dispatch(getResumes()))
