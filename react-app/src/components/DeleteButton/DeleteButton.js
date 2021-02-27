@@ -10,11 +10,18 @@ const DeleteButton = () => {
     const dispatch = useDispatch();
     const history = useHistory()
 
+    
+    
     const byeResume = async(e) => {
-        await dispatch(deleteAResume(resumeId))
-            .then(dispatch(getResumes()))
-            .then(() => setLoaded(true))
-            .then(history.push('/resumes'))
+        if (window.confirm('Are you sure you want to save this thing into the database?')) {
+            // Save it!
+            await dispatch(deleteAResume(resumeId))
+                .then(dispatch(getResumes()))
+                .then(() => setLoaded(true))
+                .then(history.push('/resumes'))
+        } else {
+            return
+        }
     }
 
     return (
