@@ -1,6 +1,10 @@
 const LOAD_RESUMES = 'resume/LOAD_RESUMES';
 const CLEAR_RESUMES = 'resume/CLEAR_RESUMES';
+<<<<<<< HEAD
 const EDIT_RESUMES = 'resume/EDIT_RESUMES';
+=======
+const DELETE_RESUME = 'resume/DELETE_RESUME'
+>>>>>>> main
 
 const resume_loading = (resumes) => ({
   type: LOAD_RESUMES,
@@ -11,9 +15,15 @@ const clear_resumes = () => ({
   type: CLEAR_RESUMES,
 });
 
+<<<<<<< HEAD
 const edit_resumes = (resume) => ({
   type: EDIT_RESUMES,
   resume
+=======
+const delete_resume = (id) => ({
+  type: DELETE_RESUME,
+  id
+>>>>>>> main
 });
 
 export const getResumes = () => async (dispatch) => {
@@ -27,6 +37,14 @@ export const getOneResume = (id) => async (dispatch) => {
   const res = await response.json();
   dispatch(resume_loading(res));
 };
+
+export const deleteAResume = (id) => async (dispatch) => {
+  const response = await fetch(`/api/resumes/delete/${id}`, {
+    method: "DELETE"
+  });
+  const res = await response.json();
+  dispatch(delete_resume(res));
+}
 
 export const clearResumes = () => async (dispatch) => {
   await dispatch(clear_resumes());
@@ -54,20 +72,25 @@ const resumeReducer = (state = {}, action) => {
 
   let newState;
   switch (action.type) {
-    case LOAD_RESUMES: {
+    case LOAD_RESUMES:
       newState = {};
       newState.resume = action.resumes;
       return newState;
-    }
-    case CLEAR_RESUMES: {
+      break;
+    case CLEAR_RESUMES:
       newState = {};
       return newState;
-    }
-    case EDIT_RESUMES: {
+      break;
+    case EDIT_RESUMES:
       newState = {};
       newState.resume = action.resume;
       return newState;
-    }
+      break;
+    case DELETE_RESUME:
+      newState = {};
+      newState.resume = action.id;
+      return newState;
+      break;
     default:
       return state;
   }

@@ -37,10 +37,6 @@ const userReducer = (state = null, action) => {
       newState = action.user;
       return newState;
     }
-    // case LOGIN_USER: {
-    //     newState = action
-    //     debugger
-    // }
     case LOGOUT_USER: {
       newState = initialState;
       return newState;

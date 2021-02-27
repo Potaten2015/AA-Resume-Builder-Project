@@ -8,7 +8,6 @@ const Management = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.resume.resume);
-  const currentUser = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getResumes()).then(() => setLoaded(true));

@@ -3,6 +3,7 @@ import './Resume.css';
 import * as resumeActions from '../../store/resume';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import DeleteButton from '../DeleteButton/DeleteButton'
 
 const Resume = () => {
     const { resumeId } = useParams()
@@ -15,7 +16,7 @@ const Resume = () => {
 
     useEffect(() => {
         dispatch(getOneResume(resumeId)).then(() => setLoaded(true));
-    }, [dispatch]);
+    }, [dispatch, getOneResume, resumeId]);
 
     const editResume = async (e) => {
         await dispatch(resumeActions.editResumes(resumeId))
@@ -26,10 +27,14 @@ const Resume = () => {
         <>
             {loaded &&
                 resume &&
-                <div className="resume_space block">
-                    <div className="individual_resume border border-black" dangerouslySetInnerHTML={{ __html: resume.html }} />
-                    <button onClick={editResume}>Edit</button>
-                </div>
+                <>
+                    <div className="resume_space block">
+                    <div className="individual_resume border border-black overflow-hidden" dangerouslySetInnerHTML={{ __html: resume.html }} />
+                        <div className="relative top-6">
+                            <DeleteButton />
+                        </div>
+                    </div>
+                </>
             }
         </>
     );
