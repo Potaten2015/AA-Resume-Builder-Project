@@ -10,7 +10,8 @@ resume_routes = Blueprint('resumes', __name__)
 @resume_routes.route("/", methods=["GET"])
 def get_resumes():
     current_user = int(session['_user_id'])
-    resumes = Resume.query.options(joinedload(Resume.user_resume_tags).joinedload(User_Resume_Tag.user_tag)).filter(Resume.user_id == current_user).all()
+    resumes = Resume.query.options(joinedload(Resume.user_resume_tags).joinedload(
+        User_Resume_Tag.user_tag)).filter(Resume.user_id == current_user).all()
     each_resume = {}
     count = 0
     for resume in range(0, len(resumes)):
@@ -23,7 +24,8 @@ def get_resumes():
         }
 
         for user_resume_tag in resumes[count].user_resume_tags:
-            each_resume[count]["user_tags"].append(user_resume_tag.user_tag.name)
+            each_resume[count]["user_tags"].append(
+                user_resume_tag.user_tag.name)
 
         count += 1
 
@@ -41,25 +43,30 @@ def get_resume(id):
     }
     return single_resume
 
+
 @resume_routes.route('/edit/<int:id>', methods=["GET"])
 def edit_resume(id):
 
-    resume = db.session.query(Resume).options(joinedload(Resume.user_resume_tags)).filter(Resume.id==id).first()
+    resume = db.session.query(Resume).options(joinedload(
+        Resume.user_resume_tags)).filter(Resume.id == id).first()
 
     resume_resume_info = {}
 
     print("LOOK HERE YOU FKING MORON", resume.user_resume_tags)
 
-    field_tuples = sorted([(resume_field.page_order - 1, index) for index, resume_field in enumerate(resume.resume_fields)], key=lambda x:x[0])
+    field_tuples = sorted([(resume_field.page_order - 1, index) for index,
+                           resume_field in enumerate(resume.resume_fields)], key=lambda x: x[0])
     resume_resume_info = {"fields": [], "user_tags": [], "id": resume.id}
     for user_resume_tag in resume.user_resume_tags:
         resume_resume_info["user_tags"].append(user_resume_tag.user_tag.name)
     for pair in field_tuples:
-        resume_resume_info["fields"].append({"name":resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
+        resume_resume_info["fields"].append({"name": resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]
+                                                                                                                                   ].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
 
     print(resume_resume_info)
 
     return resume_resume_info
+
 
 @resume_routes.route('/save', methods=["POST"])
 def save_resume():
@@ -69,7 +76,8 @@ def save_resume():
     if resumeData["resume_id"] != "NEW":
         Resume.query.filter(Resume.id == resumeData["resume_id"]).delete()
 
-    resume = Resume(html="<h1>HTML FOR RESUME</h1>", user_id=resumeData["user_id"], style_id=resumeData["style_id"])
+    resume = Resume(
+        html=resumeData["html"], user_id=resumeData["user_id"], style_id=resumeData["style_id"])
 
     db.session.add(resume)
     db.session.commit()
@@ -80,19 +88,21 @@ def save_resume():
         db.session.add(user_tag)
         db.session.commit()
         db.session.flush()
-        user_resume_tag = User_Resume_Tag(user_tag_id=user_tag.id, resume_id=resume.id)
+        user_resume_tag = User_Resume_Tag(
+            user_tag_id=user_tag.id, resume_id=resume.id)
         db.session.add(user_resume_tag)
 
     for field in resumeData["fields"]:
-        newField = Resume_Field(resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"])
+        newField = Resume_Field(
+            resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"])
         db.session.add(newField)
         db.session.commit()
         db.session.flush()
 
-
     db.session.commit()
 
     return {"MESSAGE": "SUCCESSFULLY CREATED RESUME"}
+
 
 @resume_routes.route('/delete/<int:id>', methods=["DELETE"])
 def delete_resume(id):
