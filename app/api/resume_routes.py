@@ -43,9 +43,12 @@ def get_resume(id):
 
 @resume_routes.route('/edit/<int:id>', methods=["GET"])
 def edit_resume(id):
-    resume = db.session.query(Resume).join(Resume.resume_fields).options(joinedload(Resume.resume_fields).joinedload(Resume_Field.field),joinedload(Resume.user_resume_tags).joinedload(User_Resume_Tag.user_tag)).filter(Resume.id==id).first()
+
+    resume = db.session.query(Resume).options(joinedload(Resume.user_resume_tags)).filter(Resume.id==id).first()
 
     resume_resume_info = {}
+
+    print("LOOK HERE YOU FKING MORON", resume.user_resume_tags)
 
     field_tuples = sorted([(resume_field.page_order - 1, index) for index, resume_field in enumerate(resume.resume_fields)], key=lambda x:x[0])
     resume_resume_info = {"fields": [], "user_tags": [], "id": resume.id}
@@ -53,6 +56,8 @@ def edit_resume(id):
         resume_resume_info["user_tags"].append(user_resume_tag.user_tag.name)
     for pair in field_tuples:
         resume_resume_info["fields"].append({"name":resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
+
+    print(resume_resume_info)
 
     return resume_resume_info
 
@@ -79,7 +84,11 @@ def save_resume():
         db.session.add(user_resume_tag)
 
     for field in resumeData["fields"]:
-        db.session.add(Resume_Field(resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"]))
+        newField = Resume_Field(resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"])
+        db.session.add(newField)
+        db.session.commit()
+        db.session.flush()
+
 
     db.session.commit()
 

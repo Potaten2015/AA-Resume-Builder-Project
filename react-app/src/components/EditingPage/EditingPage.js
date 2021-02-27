@@ -37,15 +37,26 @@ const EditingPage = () => {
   }
 
   const [values, setValues] = useState(valueHolder);
+
   let tagValue;
+
+  const currentdate = new Date();
+  const rightNow = currentdate.getDate() + "/"
+                  + (currentdate.getMonth()+1)  + "/"
+                  + currentdate.getFullYear() + " @ "
+                  + currentdate.getHours() + ":"
+                  + currentdate.getMinutes() + ":"
+                  + currentdate.getSeconds();
+
+
   if(path.includes("edit")){
     if(current_resume.user_tags.length > 0){
       tagValue = current_resume.user_tags.join(", ")
     } else {
-      tagValue = current_resume.id
+      tagValue = rightNow
     }
   } else {
-    tagValue = ""
+    tagValue = rightNow
   }
   const [userTags, setUserTags] = useState(tagValue)
 
@@ -54,14 +65,23 @@ const EditingPage = () => {
     const resumeData = {}
     resumeData["fields"] = []
 
-    Object.keys(values).forEach(value => {
-      resumeData["fields"][value] = {"field_id": current_template[value].field_id, "page_order": value, "value": values[value]}
-    })
+    if(path.includes("edit")){
+      Object.keys(values).forEach(value => {
+        resumeData["fields"][value] = {"field_id": current_resume.fields[value].field_id, "page_order": value, "value": values[value]}
+      })
+    }
+    else {
+      Object.keys(values).forEach(value => {
+        resumeData["fields"][value] = {"field_id": current_template[value].field_id, "page_order": value, "value": values[value]}
+      })
+    }
+
 
     resumeData["style_id"] = 1
     resumeData["user_id"] = user_id
     resumeData["resume_id"] = path.includes("edit") ? current_resume.id : "NEW"
-    resumeData["user_tags"] = userTags.split(", ").join(",").split(",")
+    console.log(userTags.split(", ").join(",").split(","))
+    resumeData["user_tags"] = userTags.split(", ").join(",").length > 0 ? userTags.split(", ").join(",").split(",") : [rightNow]
 
     await dispatch(saveResumes(resumeData)).then(() => history.push('/resumes'))
 
