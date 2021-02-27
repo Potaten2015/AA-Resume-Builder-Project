@@ -32,6 +32,7 @@ const Resume = () => {
                     <div className="individual_resume border border-black overflow-hidden" dangerouslySetInnerHTML={{ __html: resume.html }} />
                         <div className="relative top-6">
                             <DeleteButton />
+                            <button onClick={editResume}>Edit</button>
                         </div>
                     </div>
                 </>

@@ -36,8 +36,6 @@ const EditingPage = () => {
     }
   }
 
-  console.log("Current Resume", current_resume)
-
   const [values, setValues] = useState(valueHolder);
   let tagValue;
   if(path.includes("edit")){
@@ -51,7 +49,7 @@ const EditingPage = () => {
   }
   const [userTags, setUserTags] = useState(tagValue)
 
-  const saveResume = (e) =>{
+  const saveResume = async (e) =>{
 
     const resumeData = {}
     resumeData["fields"] = []
@@ -63,11 +61,9 @@ const EditingPage = () => {
     resumeData["style_id"] = 1
     resumeData["user_id"] = user_id
     resumeData["resume_id"] = path.includes("edit") ? current_resume.id : "NEW"
-    resumeData["user_tags"] = userTags.split(" ").join("").split(",")
+    resumeData["user_tags"] = userTags.split(", ").join(",").split(",")
 
-    dispatch(saveResumes(resumeData))
-
-    history.push('/resumes')
+    await dispatch(saveResumes(resumeData)).then(() => history.push('/resumes'))
 
   }
 
