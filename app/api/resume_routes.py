@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Resume, Resume_Field, User_Resume_Tag
+from app.models import User, db, Resume, Resume_Field, User_Resume_Tag, User_Tag
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy.orm import joinedload
+from sqlalchemy import delete
 
 resume_routes = Blueprint('resumes', __name__)
 
@@ -9,7 +10,7 @@ resume_routes = Blueprint('resumes', __name__)
 @resume_routes.route("/", methods=["GET"])
 def get_resumes():
     current_user = int(session['_user_id'])
-    resumes = Resume.query.filter(Resume.user_id == current_user).all()
+    resumes = Resume.query.options(joinedload(Resume.user_resume_tags).joinedload(User_Resume_Tag.user_tag)).filter(Resume.user_id == current_user).all()
     each_resume = {}
     count = 0
     for resume in range(0, len(resumes)):
@@ -18,8 +19,14 @@ def get_resumes():
             "html": resumes[count].html,
             "user_id": resumes[count].user_id,
             "style_id": resumes[count].style_id,
+            "user_tags": []
         }
+
+        for user_resume_tag in resumes[count].user_resume_tags:
+            each_resume[count]["user_tags"].append(user_resume_tag.user_tag.name)
+
         count += 1
+
     return each_resume
 
 
@@ -41,11 +48,11 @@ def edit_resume(id):
     resume_resume_info = {}
 
     field_tuples = sorted([(resume_field.page_order - 1, index) for index, resume_field in enumerate(resume.resume_fields)], key=lambda x:x[0])
-    resume_resume_info = {"field_data": [], "user_tags": []}
-    for user_tag in resume.user_resume_tags:
-        resume_resume_info["user_tags"].append(user_tag.default_tags.name)
+    resume_resume_info = {"fields": [], "user_tags": [], "id": resume.id}
+    for user_resume_tag in resume.user_resume_tags:
+        resume_resume_info["user_tags"].append(user_resume_tag.user_tag.name)
     for pair in field_tuples:
-        resume_resume_info["field_data"].append({"name":resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
+        resume_resume_info["fields"].append({"name":resume.resume_fields[pair[1]].field.name, "placeholder": resume.resume_fields[pair[1]].field.placeholder, "field_id": resume.resume_fields[pair[1]].field.id, "value": resume.resume_fields[pair[1]].value})
 
     return resume_resume_info
 
@@ -53,7 +60,9 @@ def edit_resume(id):
 def save_resume():
 
     resumeData = request.json
-    print(resumeData)
+
+    if resumeData["resume_id"] != "NEW":
+        Resume.query.filter(Resume.id == resumeData["resume_id"]).delete()
 
     resume = Resume(html="<h1>HTML FOR RESUME</h1>", user_id=resumeData["user_id"], style_id=resumeData["style_id"])
 
@@ -61,8 +70,15 @@ def save_resume():
     db.session.commit()
     db.session.flush()
 
+    for tag in resumeData["user_tags"]:
+        user_tag = User_Tag(user_id=resumeData["user_id"], name=tag)
+        db.session.add(user_tag)
+        db.session.commit()
+        db.session.flush()
+        user_resume_tag = User_Resume_Tag(user_tag_id=user_tag.id, resume_id=resume.id)
+        db.session.add(user_resume_tag)
+
     for field in resumeData["fields"]:
-        print(field)
         db.session.add(Resume_Field(resume_id=resume.id, field_id=field["field_id"], page_order=field["page_order"], value=field["value"]))
 
     db.session.commit()

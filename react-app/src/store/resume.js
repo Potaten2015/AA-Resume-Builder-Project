@@ -46,7 +46,6 @@ export const saveResumes = (resumeData) => async (dispatch) => {
 export const editResumes = (resumeId) => async (dispatch) => {
   const response = await fetch(`/api/resumes/edit/${resumeId}`);
   const res = await response.json();
-  console.log(res)
   dispatch(edit_resumes(res));
   return res;
 };

@@ -7,7 +7,7 @@ import {saveResumes} from '../../store/resume'
 
 const EditingPage = () => {
 
-  const href = window.location.href
+  const path = window.location.pathname
 
 
   const dispatch = useDispatch()
@@ -22,11 +22,12 @@ const EditingPage = () => {
 
   const valueHolder = {};
 
-  if(current_template || current_resume.field_data){
-    if(href.includes("edit") && current_resume.field_data) {
-      for (let i = 0; i < current_resume.field_data.length; i++) {
-        // console.log(current_resume.field_data)
-        valueHolder[i] = current_resume.field_data[i].value;
+  if(current_template || current_resume.fields){
+    if(path.includes("edit")) {
+      if(current_resume.fields){
+        for (let i = 0; i < current_resume.fields.length; i++) {
+          valueHolder[i] = current_resume.fields[i].value;
+        }
       }
     } else if(current_template) {
       for (let i = 0; i < current_template.length; i++) {
@@ -35,7 +36,20 @@ const EditingPage = () => {
     }
   }
 
+  console.log("Current Resume", current_resume)
+
   const [values, setValues] = useState(valueHolder);
+  let tagValue;
+  if(path.includes("edit")){
+    if(current_resume.user_tags.length > 0){
+      tagValue = current_resume.user_tags.join(", ")
+    } else {
+      tagValue = current_resume.id
+    }
+  } else {
+    tagValue = ""
+  }
+  const [userTags, setUserTags] = useState(tagValue)
 
   const saveResume = (e) =>{
 
@@ -48,6 +62,8 @@ const EditingPage = () => {
 
     resumeData["style_id"] = 1
     resumeData["user_id"] = user_id
+    resumeData["resume_id"] = path.includes("edit") ? current_resume.id : "NEW"
+    resumeData["user_tags"] = userTags.split(" ").join("").split(",")
 
     dispatch(saveResumes(resumeData))
 
@@ -55,23 +71,48 @@ const EditingPage = () => {
 
   }
 
-  return current_template_object && (
-    <div className="editing-page">
-      <div className="editing-page-outer">
-        <div className="editing-page-form-container">
-          <h1>Editing Resume</h1>
-          <form className="editing-page-form">
-            <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
-          </form>
-          <button className="editing-page-save-button" onClick={saveResume}>Save Resume</button>
-        </div>
-        <div className="editing-page-preview-container">
-          <h1>Resume Preview</h1>
-          <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues}/>
+  if(path.includes("edit")){
+    return current_resume && (
+      <div className="editing-page">
+        <div className="editing-page-outer">
+          <div className="editing-page-form-container">
+            <h1>Editing Resume</h1>
+            <form className="editing-page-form">
+              <Preview template_name={"Now Editing Resume"} template={current_resume.fields} values={values} preview={true} form={true} setValues={setValues}/>
+            </form>
+            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
+            <input name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
+            <button className="editing-page-save-button" onClick={saveResume}>Save Resume</button>
+          </div>
+          <div className="editing-page-preview-container">
+            <h1>Resume Preview</h1>
+            <Preview template_name={"Resume Preview"} template={current_resume.fields} values={values} preview={true} form={false} setValues={setValues}/>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return current_template_object && (
+      <div className="editing-page">
+        <div className="editing-page-outer">
+          <div className="editing-page-form-container">
+            <h1>Editing Resume</h1>
+            <form className="editing-page-form">
+              <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
+            </form>
+            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
+            <input name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
+            <button className="editing-page-save-button" onClick={saveResume}>Save Resume</button>
+          </div>
+          <div className="editing-page-preview-container">
+            <h1>Resume Preview</h1>
+            <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 };
 
 export default EditingPage;

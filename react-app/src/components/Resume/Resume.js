@@ -17,8 +17,8 @@ const Resume = () => {
         dispatch(getOneResume(resumeId)).then(() => setLoaded(true));
     }, [dispatch]);
 
-    const editResume = (e) => {
-        dispatch(resumeActions.editResumes(resumeId))
+    const editResume = async (e) => {
+        await dispatch(resumeActions.editResumes(resumeId))
         history.push('/resume/0/edit')
     }
 
