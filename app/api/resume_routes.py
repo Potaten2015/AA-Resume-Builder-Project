@@ -52,7 +52,5 @@ def delete_resume(id):
             "style_id": resumes[count].style_id,
         }
         count += 1
-
-        # thunk spread into object
     
     return each_resume
