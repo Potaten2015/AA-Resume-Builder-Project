@@ -65,7 +65,7 @@ const AboutPage = () => {
             </a>
           </div>
           <div>
-            <img src={taten}></img>
+            <img src={taten} alt="taten profile"></img>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ const AboutPage = () => {
             </a>
           </div>
           <div>
-            <img src={matthew}></img>
+            <img src={matthew} alt="matthew profile"></img>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ const AboutPage = () => {
             </a>
           </div>
           <div>
-            <img src={johnny}></img>
+            <img src={johnny} alt="johnny profile"></img>
           </div>
         </div>
 
@@ -123,7 +123,7 @@ const AboutPage = () => {
             </a>
           </div>
           <div>
-            <img src={william}></img>
+            <img src={william} alt="william profile"></img>
           </div>
         </div>
       </div>
