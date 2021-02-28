@@ -64,6 +64,7 @@ const AboutPage = () => {
               <FontAwesomeIcon icon={faGithub} />
             </a>
           </div>
+
           <div>
             <img src={taten} alt="taten profile"></img>
           </div>
@@ -72,6 +73,9 @@ const AboutPage = () => {
         <div className="bg-accentLight45 p-4 m-2 flex flex-col justify-center items-center">
           <div className="flex flex-row justify-center p-2">
             <h1 className="text-accentDark text-2xl p-2">Matthew Hasan</h1>
+            <a className="text-2xl text-accentDark p-2">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
             <a
               href="https://github.com/MattMav21"
               className="text-2xl text-accentDark p-2"
@@ -79,6 +83,7 @@ const AboutPage = () => {
               <FontAwesomeIcon icon={faGithub} />
             </a>
           </div>
+
           <div>
             <img src={matthew} alt="matthew profile"></img>
           </div>

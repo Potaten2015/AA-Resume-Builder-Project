@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { LoginForm, SignUpForm } from "../auth";
+import { demoLogin } from "../../services/auth";
+import { useDispatch } from "react-redux";
+import * as UserActions from "../../store/user";
 
 import splashImage from "./splash.jpg";
 import testerResume from "./test-img.png";
 
 const LandingPage = ({ authenticated, setAuthenticated }) => {
+  const dispatch = useDispatch();
   if (authenticated) {
     return <Redirect to="/main" />;
   }
+
+  const loginDemo = async (e) => {
+    const user = await demoLogin();
+    setAuthenticated(true);
+    dispatch(UserActions.saveUser(user));
+  };
 
   return (
     <div className="m-4">
@@ -99,6 +109,7 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                 exact={true}
                 className="p-2 transform hover:scale-105 cursor-pointer"
                 disabled={true}
+                onClick={loginDemo}
               >
                 Demo User
               </NavLink>
