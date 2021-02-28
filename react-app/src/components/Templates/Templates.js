@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './Templates.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemplates, updateCurrentTemplate } from '../../store/template';
-import { NavLink } from 'react-router-dom';
-import EditHelper from '../EditHelper';
 import Preview from './Preview';
 
 const Templates = () => {

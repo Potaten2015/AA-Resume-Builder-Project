@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 import Preview from '../Templates/Preview';
-import './EditingPage.css';
 import {saveResumes} from '../../store/resume'
+import { loadStyles } from '../../store/template';
+import styleFinder from '../../utils/styleFinder';
 
 const EditingPage = () => {
 
   const path = window.location.pathname
-
 
   const dispatch = useDispatch()
   const history = useHistory()
 
   const current_template_object = useSelector((state) => state ? state.template.current : null);
   const current_resume = useSelector((state) => state ? state.resume.resume : null);
+  const styles = useSelector((state) => state.template.styles ? state.template.styles : null)
   const user_id = useSelector(state => state.user.id)
 
   const current_template = current_template_object ? current_template_object.fields : null;
@@ -37,6 +38,10 @@ const EditingPage = () => {
   }
 
   const [values, setValues] = useState(valueHolder);
+  const [loaded, setLoaded] = useState(false)
+  const [selectedStyle, setSelectedStyle] = useState(path.includes("edit") ? current_resume.style.id : 1)
+  const currentStyle = styleFinder(parseInt(selectedStyle,10))
+
 
   let tagValue;
 
@@ -76,53 +81,75 @@ const EditingPage = () => {
       })
     }
 
-
-    resumeData["style_id"] = 1
+    resumeData["style_id"] = parseInt(currentStyle, 10)
     resumeData["user_id"] = user_id
     resumeData["resume_id"] = path.includes("edit") ? current_resume.id : "NEW"
-    console.log(userTags.split(", ").join(",").split(","))
     resumeData["user_tags"] = userTags.split(", ").join(",").length > 0 ? userTags.split(", ").join(",").split(",") : [rightNow]
 
     await dispatch(saveResumes(resumeData)).then(() => history.push('/resumes'))
 
   }
 
+  useEffect(()=> {
+    if(!loaded) dispatch(loadStyles()).then(() => setLoaded(true))
+  }, [dispatch])
+
   if(path.includes("edit")){
-    return current_resume && (
-      <div className="editing-page">
-        <div className="editing-page-outer">
-          <div className="editing-page-form-container">
-            <h1>Editing Resume</h1>
-            <form className="editing-page-form">
-              <Preview template_name={"Now Editing Resume"} template={current_resume.fields} values={values} preview={true} form={true} setValues={setValues}/>
+    return current_resume && loaded && (
+      <div className="w-full h-full bg-accentLight45">
+        <div className="w-full h-full flex flex-row justify-around items-center">
+          <div className="w-full h-full border text-accentDark">
+            <h1 className="w-full text-center">Editing Resume</h1>
+            <form className="w-full h-auto">
+              <Preview template_name={""} template={current_resume.fields} values={values} preview={true} form={true} setValues={setValues}/>
             </form>
-            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
-            <input name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
-            <button className="editing-page-save-button" onClick={saveResume}>Save Resume</button>
           </div>
-          <div className="editing-page-preview-container">
+          <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
+            <input className="w-full text-center h-min" name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
+            <div className="flex flex-col items-center justify-center">
+              <label htmlFor="style">Style</label>
+              <select className="w-full text-center h-min" name="style" value={selectedStyle} onChange={e => {
+                setSelectedStyle(e.target.value)
+              }}>
+                {Object.keys(styles).map(styleId => <option key={styleId} value={parseInt(styleId, 10)}>{styles[styleId]}</option>)}
+              </select>
+            </div>
+            <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
+          </div>
+          <div className="w-full h-full" >
             <h1>Resume Preview</h1>
-            <Preview template_name={"Resume Preview"} template={current_resume.fields} values={values} preview={true} form={false} setValues={setValues}/>
+            <Preview template_name={"Resume Preview"} template={current_resume.fields} values={values} preview={true} form={false} setValues={setValues} currentStyle={currentStyle}/>
           </div>
         </div>
       </div>
     );
   } else {
-    return current_template_object && (
-      <div className="editing-page">
-        <div className="editing-page-outer">
-          <div className="editing-page-form-container">
-            <h1>Editing Resume</h1>
-            <form className="editing-page-form">
+    return current_template_object && loaded && (
+      <div className="w-full h-full bg-accentLight45">
+        <div className="w-full h-full flex flex-row justify-around items-center">
+          <div className="w-full h-full border text-accentDark">
+            <h1 className="w-full text-center">Editing Resume</h1>
+            <form className="w-full h-auto">
               <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
             </form>
-            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
-            <input name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
-            <button className="editing-page-save-button" onClick={saveResume}>Save Resume</button>
           </div>
-          <div className="editing-page-preview-container">
+          <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+            <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
+            <input className="w-full text-center h-min" name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
+            <div className="flex flex-col items-center justify-center">
+              <label htmlFor="style">Style</label>
+              <select className="w-full text-center h-min" name="style" value={selectedStyle} onChange={e => {
+                setSelectedStyle(e.target.value)
+              }}>
+                {Object.keys(styles).map(styleId => <option key={styleId} value={parseInt(styleId, 10)}>{styles[styleId]}</option>)}
+              </select>
+            </div>
+            <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
+          </div>
+          <div className="w-full h-full border">
             <h1>Resume Preview</h1>
-            <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues}/>
+            <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues} currentStyle={currentStyle}/>
           </div>
         </div>
       </div>

@@ -48,10 +48,8 @@ def edit_resume(id):
 
     resume_resume_info = {}
 
-    print("LOOK HERE YOU FKING MORON", resume.user_resume_tags)
-
     field_tuples = sorted([(resume_field.page_order - 1, index) for index, resume_field in enumerate(resume.resume_fields)], key=lambda x:x[0])
-    resume_resume_info = {"fields": [], "user_tags": [], "id": resume.id}
+    resume_resume_info = {"fields": [], "user_tags": [], "id": resume.id, "style": resume.style_id}
     for user_resume_tag in resume.user_resume_tags:
         resume_resume_info["user_tags"].append(user_resume_tag.user_tag.name)
     for pair in field_tuples:
