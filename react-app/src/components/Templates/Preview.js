@@ -1,10 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateCurrentTemplate } from '../../store/template';
-import ResumeSection from '../ResumeSection';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCurrentTemplate } from "../../store/template";
+import ResumeSection from "../ResumeSection";
 
-const Preview = ({ template_name, template, values, preview, form, setValues, tags }) => {
+const Preview = ({
+  template_name,
+  template,
+  values,
+  preview,
+  form,
+  setValues,
+  tags,
+  currentStyle,
+}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -20,90 +29,90 @@ const Preview = ({ template_name, template, values, preview, form, setValues, ta
 
     const field = template[i];
     switch (field.name) {
-      case 'full_name':
-        currentSection = 'header';
+      case "full_name":
+        currentSection = "header";
         break;
-      case 'github':
-        currentSection = 'header';
+      case "github":
+        currentSection = "header";
         break;
-      case 'city':
-        currentSection = 'contact';
+      case "city":
+        currentSection = "contact";
         break;
-      case 'phone_number':
-        currentSection = 'contact';
+      case "phone_number":
+        currentSection = "contact";
         break;
-      case 'linkedin':
-        currentSection = 'contact';
+      case "linkedin":
+        currentSection = "contact";
         break;
-      case 'intro_header':
-        currentSection = 'intro';
+      case "intro_header":
+        currentSection = "intro";
         break;
-      case 'intro_skill':
-        currentSection = 'introSkill';
+      case "intro_skill":
+        currentSection = "introSkill";
         break;
-      case 'experience_company':
-        if (currentSection.includes('experience')) {
+      case "experience_company":
+        if (currentSection.includes("experience")) {
           sectionCount++;
-          currentSection = 'experienceHeader' + sectionCount.toString();
+          currentSection = "experienceHeader" + sectionCount.toString();
         } else {
           sectionCount = 1;
-          currentSection = 'experienceHeader' + sectionCount.toString();
+          currentSection = "experienceHeader" + sectionCount.toString();
         }
         break;
-      case 'experience_city':
-        currentSection = 'experienceHeader' + sectionCount.toString();
+      case "experience_city":
+        currentSection = "experienceHeader" + sectionCount.toString();
         break;
-      case 'experience_date':
-        currentSection = 'experienceHeader' + sectionCount.toString();
+      case "experience_date":
+        currentSection = "experienceHeader" + sectionCount.toString();
         break;
-      case 'experience_title':
-        currentSection = 'experience' + sectionCount.toString();
+      case "experience_title":
+        currentSection = "experience" + sectionCount.toString();
         break;
-      case 'education_facility':
-        if (currentSection.includes('education')) {
+      case "education_facility":
+        if (currentSection.includes("education")) {
           sectionCount++;
-          currentSection = 'education' + sectionCount.toString();
+          currentSection = "education" + sectionCount.toString();
         } else {
           sectionCount = 1;
-          currentSection = 'education' + sectionCount.toString();
+          currentSection = "education" + sectionCount.toString();
         }
         break;
-      case 'education_degree':
-        currentSection = 'education' + sectionCount.toString();
+      case "education_degree":
+        currentSection = "education" + sectionCount.toString();
         break;
-      case 'education_graduation_date':
-        currentSection = 'education' + sectionCount.toString();
+      case "education_graduation_date":
+        currentSection = "education" + sectionCount.toString();
         break;
-      case 'education_gpa':
-        currentSection = 'education' + sectionCount.toString();
+      case "education_gpa":
+        currentSection = "education" + sectionCount.toString();
         break;
-      case 'education_minor':
-        currentSection = 'education' + sectionCount.toString();
+      case "education_minor":
+        currentSection = "education" + sectionCount.toString();
         break;
-      case 'email':
-        currentSection = 'contact';
+      case "email":
+        currentSection = "contact";
         break;
-      case 'intro_mission':
-        currentSection = 'intro';
+      case "intro_mission":
+        currentSection = "intro";
         break;
-      case 'intro_long':
-        currentSection = 'intro';
+      case "intro_long":
+        currentSection = "intro";
         break;
-      case 'experience_description':
-        currentSection = 'experience' + sectionCount.toString();
+      case "experience_description":
+        currentSection = "experience" + sectionCount.toString();
         break;
-      case 'experience_responsibility':
-        currentSection = 'experience' + sectionCount.toString();
+      case "experience_responsibility":
+        currentSection = "experience" + sectionCount.toString();
         break;
       default:
-        currentSection = 'text';
+        currentSection = "text";
     }
 
     field.order = i;
 
     if (preview && !form) templateValues[i] = null;
 
-    if (previousSection == currentSection) {
+    if (previousSection === currentSection) {
       sections[totalSectionCount].fields.push(field);
     } else {
       totalSectionCount++;
@@ -116,10 +125,15 @@ const Preview = ({ template_name, template, values, preview, form, setValues, ta
   if (preview && !form) {
     return (
       <>
-        <div className="template-solo" id="resume-to-save">
+        <div
+          className={`bg-white ${
+            currentStyle ? currentStyle[1] : "text-black-1000"
+          } ${currentStyle ? currentStyle[0] : "font-mono"} p-2 h-auto`}
+          id="resume-to-save">
           {Object.keys(sections).map((section) => {
             return (
               <ResumeSection
+                key={section}
                 section={sections[section]}
                 values={values}
                 form={form}
@@ -133,10 +147,11 @@ const Preview = ({ template_name, template, values, preview, form, setValues, ta
   } else if (preview && form) {
     return (
       <>
-        <div className="template-solo-form" id="preview2">
+        <div className="p-2" id="preview2">
           {Object.keys(sections).map((section) => {
             return (
               <ResumeSection
+                key={section}
                 section={sections[section]}
                 values={values}
                 form={form}
@@ -149,24 +164,30 @@ const Preview = ({ template_name, template, values, preview, form, setValues, ta
     );
   } else {
     return (
-      <div>
-        {template_name}
-        <div>
-          <p>Tags - </p>
-          {tags.map((tag) => (
-            <p> {tag} </p>
-          ))}
+      <div className="flex flex-col">
+        <div className="flex flex-col items-center space-y-3 underline">
+          <h2 className="flex items-center text-lg">{template_name}</h2>
+          <div className="flex items-center">
+            {tags.map((tag) => (
+              <p className="items-center text-sm mx-1">{`${tag}`}</p>
+            ))}
+          </div>
         </div>
-        <div className="template-solo" id="preview3">
+        <div className="font-mono p-2 h-auto m-2 border h-full" id="preview3">
           <NavLink
             to={`/resume/${user.id}/create`}
             onClick={(e) =>
-              dispatch(updateCurrentTemplate({ name: template_name, fields: template }))
-            }
-          >
+              dispatch(
+                updateCurrentTemplate({
+                  name: template_name,
+                  fields: template,
+                }),
+              )
+            }>
             {Object.keys(sections).map((section) => {
               return (
                 <ResumeSection
+                  key={section}
                   section={sections[section]}
                   values={templateValues}
                   form={form}

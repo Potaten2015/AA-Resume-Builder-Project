@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Template, db, Template_Field, Field, Template_Default_Tag, Default_Tag
+from app.models import Template, db, Template_Field, Field, Template_Default_Tag, Default_Tag, Style
 from flask_login import login_required
 from sqlalchemy.orm import joinedload
 
@@ -20,3 +20,15 @@ def get_templates():
         for pair in field_tuples:
             template_resume_info[template.name]["field_data"].append({"name":template.template_fields[pair[1]].field.name, "placeholder": template.template_fields[pair[1]].field.placeholder, "field_id": template.template_fields[pair[1]].field.id})
     return template_resume_info
+
+@template_routes.route("/styles", methods=["GET"])
+@login_required
+def get_styles():
+    styles = db.session.query(Style).all()
+
+    styledData = {}
+
+    for style in styles:
+        styledData[style.id] = style.name
+
+    return styledData
