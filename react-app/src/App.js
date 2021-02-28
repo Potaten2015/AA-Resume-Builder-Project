@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import AboutPage from "./components/AboutPage";
 import { authenticate } from "./services/auth";
 
 // Component import line
@@ -83,6 +84,9 @@ function App() {
         >
           <EditingPage />
         </ProtectedRoute>
+        <Route path="/about">
+          <AboutPage />
+        </Route>
         <Route path="/">
           <LandingPage
             authenticated={authenticated}

@@ -15,9 +15,12 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
       <div className="text-center pt-4 bg-main mb-2 pb-4 ">
         <h1 className="text-6xl text-accentDark">Resume Builder</h1>
         <div className="flex flex-row space-around justify-center text-accentDark text-2xl">
-          <p className="p-2 transform hover:scale-105 cursor-pointer">
+          <NavLink
+            to="/about"
+            className="p-2 transform hover:scale-105 cursor-pointer"
+          >
             About Us
-          </p>
+          </NavLink>
           <p className="pt-2"> | </p>
           <p className="p-2 transform hover:scale-105 cursor-pointer">Log In</p>
         </div>
