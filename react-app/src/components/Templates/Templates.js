@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './Templates.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemplates, updateCurrentTemplate } from '../../store/template';
-import { NavLink } from 'react-router-dom';
-import EditHelper from '../EditHelper';
 import Preview from './Preview';
 
 const Templates = () => {
@@ -29,12 +26,12 @@ const Templates = () => {
     <div className="templates-page">
       <div className="templates-page-outer">
         <div className="template-page-inner">
-          <h1>Templates</h1>
-          <div className="template-row">
+          <h1 className="w-full text-2xl text-center font-bold">Templates</h1>
+          <div className="grid grid-cols-3 h-full">
             {loaded && templates && (Object.keys(templates).length > 0) && Object.keys(templates).map(temp_key =>{
               const the_template=templates[temp_key].field_data
 
-              return <Preview template={the_template} template_name={temp_key} preview={false} tags={templates[temp_key].default_tags}/>
+              return <Preview key={temp_key} template={the_template} template_name={temp_key} preview={false} tags={templates[temp_key].default_tags}/>
             })}
           </div>
         </div>
