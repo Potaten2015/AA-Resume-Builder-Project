@@ -41,7 +41,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   return (
     <div>
       <h1 className="text-4xl text-accentDark font-semibold mb-3">Sign Up</h1>
-      <form onSubmit={onSignUp}>
+      <form onSubmit={onSignUp} className="text-xl">
         <div>
           <input
             type="text"
