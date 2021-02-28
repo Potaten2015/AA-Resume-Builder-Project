@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import Preview from '../Templates/Preview';
+
 import {saveResumes} from '../../store/resume'
 import { loadStyles } from '../../store/template';
 import styleFinder from '../../utils/styleFinder';
+import html2pdf from 'html2pdf.js';
+
 
 const EditingPage = () => {
+  const path = window.location.pathname;
 
-  const path = window.location.pathname
-
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const current_template_object = useSelector((state) => state ? state.template.current : null);
   const current_resume = useSelector((state) => state ? state.resume.resume : null);
@@ -23,14 +25,14 @@ const EditingPage = () => {
 
   const valueHolder = {};
 
-  if(current_template || current_resume.fields){
-    if(path.includes("edit")) {
-      if(current_resume.fields){
+  if (current_template || current_resume.fields) {
+    if (path.includes('edit')) {
+      if (current_resume.fields) {
         for (let i = 0; i < current_resume.fields.length; i++) {
           valueHolder[i] = current_resume.fields[i].value;
         }
       }
-    } else if(current_template) {
+    } else if (current_template) {
       for (let i = 0; i < current_template.length; i++) {
         valueHolder[i] = '';
       }
@@ -46,41 +48,62 @@ const EditingPage = () => {
   let tagValue;
 
   const currentdate = new Date();
-  const rightNow = currentdate.getDate() + "/"
-                  + (currentdate.getMonth()+1)  + "/"
-                  + currentdate.getFullYear() + " @ "
-                  + currentdate.getHours() + ":"
-                  + currentdate.getMinutes() + ":"
-                  + currentdate.getSeconds();
+  const rightNow =
+    currentdate.getDate() +
+    '/' +
+    (currentdate.getMonth() + 1) +
+    '/' +
+    currentdate.getFullYear() +
+    ' @ ' +
+    currentdate.getHours() +
+    ':' +
+    currentdate.getMinutes() +
+    ':' +
+    currentdate.getSeconds();
 
-
-  if(path.includes("edit")){
-    if(current_resume.user_tags.length > 0){
-      tagValue = current_resume.user_tags.join(", ")
+  if (path.includes('edit')) {
+    if (current_resume.user_tags.length > 0) {
+      tagValue = current_resume.user_tags.join(', ');
     } else {
-      tagValue = rightNow
+      tagValue = rightNow;
     }
   } else {
-    tagValue = rightNow
+    tagValue = rightNow;
   }
-  const [userTags, setUserTags] = useState(tagValue)
+  const [userTags, setUserTags] = useState(tagValue);
 
-  const saveResume = async (e) =>{
+  const saveAsPDF = () => {
+    console.log('Saving as PDF...');
+    const element = document.getElementById('resume-to-save');
+    html2pdf(element);
+  };
 
-    const resumeData = {}
-    resumeData["fields"] = []
+  const saveResume = async (e) => {
+    const resumeData = {};
+    resumeData['fields'] = [];
 
-    if(path.includes("edit")){
-      Object.keys(values).forEach(value => {
-        resumeData["fields"][value] = {"field_id": current_resume.fields[value].field_id, "page_order": value, "value": values[value]}
-      })
+    if (path.includes('edit')) {
+      Object.keys(values).forEach((value) => {
+        resumeData['fields'][value] = {
+          field_id: current_resume.fields[value].field_id,
+          page_order: value,
+          value: values[value],
+        };
+      });
+    } else {
+      Object.keys(values).forEach((value) => {
+        resumeData['fields'][value] = {
+          field_id: current_template[value].field_id,
+          page_order: value,
+          value: values[value],
+        };
+      });
     }
-    else {
-      Object.keys(values).forEach(value => {
-        resumeData["fields"][value] = {"field_id": current_template[value].field_id, "page_order": value, "value": values[value]}
-      })
-    }
 
+    const resumeDiv = document.getElementById('resume-to-save');
+    const resumeHTML = resumeDiv.innerHTML;
+
+    resumeData['html'] = resumeHTML;
     resumeData["style_id"] = parseInt(currentStyle, 10)
     resumeData["user_id"] = user_id
     resumeData["resume_id"] = path.includes("edit") ? current_resume.id : "NEW"
@@ -116,6 +139,7 @@ const EditingPage = () => {
               </select>
             </div>
             <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
+            <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveAsPDF}>Save as PDF</button>
           </div>
           <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
             <h1>Resume Preview</h1>
@@ -123,7 +147,7 @@ const EditingPage = () => {
           </div>
         </div>
       </div>
-    );
+      )
   } else {
     return current_template_object && loaded && (
       <div className="w-full h-5/6 bg-red-500">
@@ -146,16 +170,16 @@ const EditingPage = () => {
               </select>
             </div>
             <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
+            <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveAsPDF}>Save as PDF</button>
           </div>
           <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
             <h1>Resume Preview</h1>
             <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues} currentStyle={currentStyle}/>
           </div>
         </div>
-      </div>
-    );
+        </div>
+      )
   }
-
 };
 
 export default EditingPage;
