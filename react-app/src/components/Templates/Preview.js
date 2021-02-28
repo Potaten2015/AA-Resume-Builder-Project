@@ -117,7 +117,7 @@ const Preview = ({template_name, template, values, preview, form, setValues, tag
     if(preview && !form){
         return (
             <>
-                <div className={`template-solo bg-white ${currentStyle ? currentStyle[1] : 'text-black-1000'} ${currentStyle ? currentStyle[0] : 'font-mono'}`}>
+                <div className={`bg-white ${currentStyle ? currentStyle[1] : 'text-black-1000'} ${currentStyle ? currentStyle[0] : 'font-mono'} p-2 h-auto`}>
                 {Object.keys(sections).map(section => {
                     return <ResumeSection key={section} section={sections[section]} values={values} form={form} setValues={setValues}/>
                 })}
@@ -127,7 +127,7 @@ const Preview = ({template_name, template, values, preview, form, setValues, tag
     } else if (preview && form){
         return (
             <>
-                <div className="template-solo-form">
+                <div className="">
                 {Object.keys(sections).map(section => {
                     return <ResumeSection key={section} section={sections[section]} values={values} form={form} setValues={setValues}/>
                 })}
@@ -136,13 +136,14 @@ const Preview = ({template_name, template, values, preview, form, setValues, tag
           )
     } else {
         return (
-            <div>
-                {template_name}
-                <div>
-                    <p>Tags - </p>
-                    {tags.map(tag => <p> {tag} </p>)}
+            <div className="flex flex-col">
+                <div className="flex flex-col items-center space-y-3 underline">
+                    <h2 className="flex items-center text-lg">{template_name}</h2>
+                    <div className="flex items-center">
+                        {tags.map(tag => <p className="items-center text-sm mx-1">{`${tag}`}</p>)}
+                    </div>
                 </div>
-                <div className="template-solo">
+                <div className="font-mono p-2 h-auto m-2 border h-full">
                 <NavLink to={`/resume/${user.id}/create`} onClick={e => dispatch(updateCurrentTemplate({name: template_name, fields: template}))}>
                     {Object.keys(sections).map(section => {
                         return <ResumeSection key={section} section={sections[section]} values={templateValues} form={form} setValues={setValues}/>

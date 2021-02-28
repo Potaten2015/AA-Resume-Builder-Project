@@ -26,8 +26,8 @@ const Templates = () => {
     <div className="templates-page">
       <div className="templates-page-outer">
         <div className="template-page-inner">
-          <h1>Templates</h1>
-          <div className="template-row">
+          <h1 className="w-full text-2xl text-center font-bold">Templates</h1>
+          <div className="grid grid-cols-3">
             {loaded && templates && (Object.keys(templates).length > 0) && Object.keys(templates).map(temp_key =>{
               const the_template=templates[temp_key].field_data
 

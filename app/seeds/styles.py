@@ -3,7 +3,7 @@ from app.models import db, Style
 # Adds a demo user, you can add other users here if you want
 def seed_styles():
 
-    colors = ("Red", "Orange", "Yellow", "Green", "Blue", "Purple")
+    colors = ("Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black")
     types = ("Fancy", "Plain", "Ugly")
 
     for color in colors:

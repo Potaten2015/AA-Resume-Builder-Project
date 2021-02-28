@@ -39,7 +39,7 @@ const EditingPage = () => {
 
   const [values, setValues] = useState(valueHolder);
   const [loaded, setLoaded] = useState(false)
-  const [selectedStyle, setSelectedStyle] = useState(path.includes("edit") ? current_resume.style.id : 1)
+  const [selectedStyle, setSelectedStyle] = useState(path.includes("edit") ? current_resume.style.id : 21)
   const currentStyle = styleFinder(parseInt(selectedStyle,10))
 
 
@@ -96,15 +96,15 @@ const EditingPage = () => {
 
   if(path.includes("edit")){
     return current_resume && loaded && (
-      <div className="w-full h-full bg-accentLight45">
-        <div className="w-full h-full flex flex-row justify-around items-center">
-          <div className="w-full h-full border text-accentDark">
+      <div className="w-full h-5/6 bg-red-500">
+        <div className="w-full h-5/6 grid grid-cols-12 grid-rows-1 justify-items-center bg-main">
+          <div className="m-2 col-start-1 col-end-6 w-11/12 h-30 p-2 text-accentDark bg-accentDark">
             <h1 className="w-full text-center">Editing Resume</h1>
             <form className="w-full h-auto">
               <Preview template_name={""} template={current_resume.fields} values={values} preview={true} form={true} setValues={setValues}/>
             </form>
           </div>
-          <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+          <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-center space-y-4">
             <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
             <input className="w-full text-center h-min" name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
             <div className="flex flex-col items-center justify-center">
@@ -117,7 +117,7 @@ const EditingPage = () => {
             </div>
             <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
           </div>
-          <div className="w-full h-full" >
+          <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
             <h1>Resume Preview</h1>
             <Preview template_name={"Resume Preview"} template={current_resume.fields} values={values} preview={true} form={false} setValues={setValues} currentStyle={currentStyle}/>
           </div>
@@ -126,15 +126,15 @@ const EditingPage = () => {
     );
   } else {
     return current_template_object && loaded && (
-      <div className="w-full h-full bg-accentLight45">
-        <div className="w-full h-full flex flex-row justify-around items-center">
-          <div className="w-full h-full border text-accentDark">
+      <div className="w-full h-5/6 bg-red-500">
+        <div className="w-full h-5/6 grid grid-cols-12 grid-rows-1 justify-items-center bg-blue-500">
+          <div className="m-2 col-start-1 col-end-6 w-11/12 h-30 p-2 text-accentDark bg-black">
             <h1 className="w-full text-center">Editing Resume</h1>
             <form className="w-full h-auto">
               <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={true} setValues={setValues}/>
             </form>
           </div>
-          <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
+          <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-center space-y-4">
             <label htmlFor="user-tags">Comma Separated Tags (Use to identify your resume)</label>
             <input className="w-full text-center h-min" name="user-tags" value={userTags} onChange={e => setUserTags(e.target.value)} />
             <div className="flex flex-col items-center justify-center">
@@ -147,7 +147,7 @@ const EditingPage = () => {
             </div>
             <button className="border rounded-sm hover:bg-accentDark hover:text-white" onClick={saveResume}>Save Resume</button>
           </div>
-          <div className="w-full h-full border">
+          <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
             <h1>Resume Preview</h1>
             <Preview template_name={current_template_name} template={current_template} values={values} preview={true} form={false} setValues={setValues} currentStyle={currentStyle}/>
           </div>

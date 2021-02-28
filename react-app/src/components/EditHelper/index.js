@@ -6,8 +6,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
     switch (field.name) {
       case 'full_name':
         returnField = (
-          <h1 className="placeholder-gray-400 header-name">
-            <input
+          <h1 className="w-full">
+            <input className="m-1 placeholder-gray-400"
               type="text"
               value={value}
               onChange={(e) => {
@@ -25,7 +25,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'github':
         returnField = (
-          <input className="placeholder-gray-400"
+          <input className="m-1 placeholder-gray-400"
             type="text"
             value={value}
             onChange={(e) => {
@@ -42,7 +42,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'city':
         returnField = (
-          <input className="placeholder-gray-400"
+          <input className="m-1 placeholder-gray-400"
             type="text"
             value={value}
             onChange={(e) => {
@@ -59,7 +59,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'phone_number':
         returnField = (
-          <input className="placeholder-gray-400"
+          <input className="m-1 placeholder-gray-400"
             type="text"
             value={value}
             onChange={(e) => {
@@ -76,7 +76,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'linkedin':
         returnField = (
-          <input className="placeholder-gray-400"
+          <input className="m-1 placeholder-gray-400"
             type="text"
             value={value}
             onChange={(e) => {
@@ -93,8 +93,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'intro_header':
         returnField = (
-          <h2 className="placeholder-gray-400 intro-header">
-            <input
+          <h2 className="w-full">
+            <input className="m-1 placeholder-gray-400 w-8/12"
               type="text"
               value={value}
               onChange={(e) => {
@@ -112,8 +112,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'intro_skill':
         returnField = (
-          <div className="placeholder-gray-400 intro-skill">
-            <input
+          <div className="w-full">
+            <input className="w-11/12 m-1 placeholder-gray-400"
               type="text"
               value={value}
               onChange={(e) => {
@@ -131,8 +131,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_company':
         returnField = (
-          <h2 className="placeholder-gray-400 company-name">
-            <input
+          <h2 className="w-full">
+            <input className="w-8/12 m-1 placeholder-gray-400"
               type="text"
               value={value}
               onChange={(e) => {
@@ -150,8 +150,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_city':
         returnField = (
-          <p className="placeholder-gray-400 company-city">
-            <input
+          <p className="w-full">
+            <input className="m-1 w-11/12 placeholder-gray-400"
               type="text"
               value={value}
               onChange={(e) => {
@@ -169,8 +169,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_date':
         returnField = (
-          <p className="placeholder-gray-400 company-date">
-            <input
+          <p className="w-6/12">
+            <input className="m-1 placeholder-gray-400"
               type="text"
               value={value}
               onChange={(e) => {
@@ -188,7 +188,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_title':
         returnField = (
-          <h2 className="placeholder-gray-400 role-title">
+          <h2 className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -207,7 +207,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'education_facility':
         returnField = (
-          <h2 className="placeholder-gray-400 education-facility">
+          <h2 className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -226,7 +226,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'education_degree':
         returnField = (
-          <p className="placeholder-gray-400 education-degree">
+          <p className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -245,7 +245,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'education_graduation_date':
         returnField = (
-          <p className="placeholder-gray-400 education-graduation-date">
+          <p className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -264,7 +264,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'education_gpa':
         returnField = (
-          <p className="placeholder-gray-400 education-gpa">
+          <p className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -283,7 +283,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'education_minor':
         returnField = (
-          <p className="placeholder-gray-400 education-minor">
+          <p className="m-1 placeholder-gray-400">
             <input
               type="text"
               value={value}
@@ -302,7 +302,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'email':
         returnField = (
-          <input className="placeholder-gray-400"
+          <input className="m-1 placeholder-gray-400"
             type="email"
             value={value}
             onChange={(e) => {
@@ -319,8 +319,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'intro_mission':
         returnField = (
-          <p className="placeholder-gray-400 intro-mission">
-            <textarea
+          <p className="w-full">
+            <textarea className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
                 e.persist();
@@ -337,8 +337,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'intro_long':
         returnField = (
-          <p className="placeholder-gray-400 intro-long">
-            <textarea
+          <p className="w-full">
+            <textarea className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
                 e.persist();
@@ -355,8 +355,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_description':
         returnField = (
-          <p className="placeholder-gray-400 experience-description">
-            <textarea
+          <p className="w-full">
+            <textarea className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
                 e.persist();
@@ -373,8 +373,8 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case 'experience_responsibility':
         returnField = (
-          <div className="placeholder-gray-400 experience-responsibility">
-            <textarea
+          <div className="w-full">
+            <textarea className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
                 e.persist();
@@ -396,67 +396,67 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
   } else {
     switch (field.name) {
       case 'full_name':
-        returnField = <h1 className="header-name">{value || field.placeholder}</h1>;
+        returnField = <h1 className="w-full text-xl">{value || field.placeholder}</h1>;
         break;
       case 'github':
-        returnField = <p>{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'city':
-        returnField = <p>{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'phone_number':
-        returnField = <p>{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'linkedin':
-        returnField = <p>{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'intro_header':
-        returnField = <h2 className="intro-header">{value || field.placeholder}</h2>;
+        returnField = <h2 className="text-base font-semibold">{value || field.placeholder}</h2>;
         break;
       case 'intro_skill':
-        returnField = <li className="intro-skill">{value || field.placeholder}</li>;
+        returnField = <li className="text-sm">{value || field.placeholder}</li>;
         break;
       case 'experience_company':
-        returnField = <h2 className="company-name">{value || field.placeholder}</h2>;
+        returnField = <h2 className="text-base">{value || field.placeholder}</h2>;
         break;
       case 'experience_city':
-        returnField = <p className="company-city">{value || field.placeholder}</p>;
+        returnField = <p className="text-base">{value || field.placeholder}</p>;
         break;
       case 'experience_date':
-        returnField = <p className="company-date">{value || field.placeholder}</p>;
+        returnField = <p className="w-full text-small">{value || field.placeholder}</p>;
         break;
       case 'experience_title':
-        returnField = <h2 className="role-title">{value || field.placeholder}</h2>;
+        returnField = <h2 className="text-base">{value || field.placeholder}</h2>;
         break;
       case 'education_facility':
-        returnField = <h2 className="education-facility">{value || field.placeholder}</h2>;
+        returnField = <h2 className="text-base">{value || field.placeholder}</h2>;
         break;
       case 'education_degree':
-        returnField = <p className="education-degree"> {value || field.placeholder}</p>;
+        returnField = <p className="text-base"> {value || field.placeholder}</p>;
         break;
       case 'education_graduation_date':
-        returnField = <p className="education-graduation-date">{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'education_gpa':
-        returnField = <p className="education-gpa">{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'education_minor':
-        returnField = <p className="education-minor">{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'email':
-        returnField = <p>{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'intro_mission':
-        returnField = <p className="intro-mission">{value || field.placeholder}</p>;
+        returnField = <p className="text-base font-semibold">{value || field.placeholder}</p>;
         break;
       case 'intro_long':
-        returnField = <p className="intro-long"> {value || field.placeholder}</p>;
+        returnField = <p className="text-sm"> {value || field.placeholder}</p>;
         break;
       case 'experience_description':
-        returnField = <p className="experience-description">{value || field.placeholder}</p>;
+        returnField = <p className="text-sm">{value || field.placeholder}</p>;
         break;
       case 'experience_responsibility':
-        returnField = <li className="experience-responsibility">{value || field.placeholder}</li>;
+        returnField = <li className="text-sm">{value || field.placeholder}</li>;
         break;
       default:
         returnField = <p>Field Not Found</p>;

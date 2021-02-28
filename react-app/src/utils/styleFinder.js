@@ -51,9 +51,14 @@ const styleFinder = (styleId) => {
 
         case 17:
             return ["font-mono", "text-purple-800"];
-
         case 18:
             return ["font-sans", "text-purple-800"]
+        case 19:
+            return ["font-serif", "text-black-800"]
+        case 20:
+            return ["font-mono", "text-black-800"]
+        case 21:
+            return ["font-sans", "text-black-800"]
         default:
             return ["font-mono", "text-black"]
     }
