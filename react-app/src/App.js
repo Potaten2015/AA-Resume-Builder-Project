@@ -10,7 +10,13 @@ import AboutPage from "./components/AboutPage";
 import { authenticate } from "./services/auth";
 
 // Component import line
-import { LandingPage, MainPage, Templates, Management } from "./components";
+import {
+  LandingPage,
+  MainPage,
+  Templates,
+  Management,
+  Resume,
+} from "./components";
 import EditingPage from "./components/EditingPage/EditingPage";
 import { saveUser } from "./store/user";
 
@@ -58,7 +64,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <MainPage />
         </ProtectedRoute>
         <ProtectedRoute path="/main" exact={true} authenticated={authenticated}>
           <MainPage />
@@ -71,6 +77,13 @@ function App() {
           <Management />
         </ProtectedRoute>
         <ProtectedRoute
+          path="/resumes/:resumeId"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Resume />
+        </ProtectedRoute>
+        <ProtectedRoute
           path="/templates"
           exact={true}
           authenticated={authenticated}
@@ -79,6 +92,13 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute
           path="/resume/:userId/create"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <EditingPage />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/resume/:userId/edit"
           exact={true}
           authenticated={authenticated}
         >

@@ -6,7 +6,15 @@
 }
 
 .template-solo {
-  border: dashed black 2px;
+  width: 30vw;
+  height: 38.82vw;
+  background-color: white;
+}
+
+.template-solo-form {
+  width: 30vw;
+  height: max-content;
+  background-color: white;
 }
 
 .template-header-flex {
@@ -14,7 +22,6 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px black dotted;
   align-items: flex-end;
 }
 
@@ -27,7 +34,6 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px black dotted;
   font-size: 1em;
 }
 
@@ -50,7 +56,6 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px black dotted;
 }
 
 .intro-skill {

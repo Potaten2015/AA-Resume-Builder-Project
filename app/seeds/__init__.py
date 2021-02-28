@@ -9,6 +9,7 @@ from .templates import seed_templates, undo_templates
 from .user_resume_tags import seed_user_resume_tags, undo_user_resume_tags
 from .template_fields import seed_template_fields, undo_template_fields
 from .default_tags import seed_default_tags, undo_default_tags
+from .resume_fields import seed_resume_fields, undo_resume_fields
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -27,6 +28,7 @@ def seed():
     seed_fields()
     seed_template_default_tags()
     seed_template_fields()
+    seed_resume_fields()
 
 
     # Add other seed functions here
@@ -44,5 +46,6 @@ def undo():
     undo_user_resume_tags()
     undo_template_fields()
     undo_default_tags()
+    undo_resume_fields()
 
     # Add other undo functions here
