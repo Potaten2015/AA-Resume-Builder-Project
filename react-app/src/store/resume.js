@@ -1,7 +1,9 @@
-const LOAD_RESUMES = 'resume/LOAD_RESUMES';
-const CLEAR_RESUMES = 'resume/CLEAR_RESUMES';
-const EDIT_RESUMES = 'resume/EDIT_RESUMES';
-const DELETE_RESUME = 'resume/DELETE_RESUME'
+const LOAD_RESUMES = "resume/LOAD_RESUMES";
+const CLEAR_RESUMES = "resume/CLEAR_RESUMES";
+const EDIT_RESUMES = "resume/EDIT_RESUMES";
+const DELETE_RESUME = "resume/DELETE_RESUME";
+const ADD_FIELD = "resume/ADD_FIELD";
+const REMOVE_FIELD = "resume/REMOVE_FIELD";
 
 const resume_loading = (resumes) => ({
   type: LOAD_RESUMES,
@@ -14,12 +16,22 @@ const clear_resumes = () => ({
 
 const edit_resumes = (resume) => ({
   type: EDIT_RESUMES,
-  resume
-})
+  resume,
+});
 
 const delete_resume = (id) => ({
   type: DELETE_RESUME,
-  id
+  id,
+});
+
+const add_field = (field) => ({
+  type: ADD_FIELD,
+  field,
+});
+
+const remove_field = (field) => ({
+  type: REMOVE_FIELD,
+  field,
 });
 
 export const getResumes = () => async (dispatch) => {
@@ -36,11 +48,11 @@ export const getOneResume = (id) => async (dispatch) => {
 
 export const deleteAResume = (id) => async (dispatch) => {
   const response = await fetch(`/api/resumes/delete/${id}`, {
-    method: "DELETE"
+    method: "DELETE",
   });
   const res = await response.json();
   dispatch(delete_resume(res));
-}
+};
 
 export const clearResumes = () => async (dispatch) => {
   await dispatch(clear_resumes());
@@ -50,12 +62,12 @@ export const clearResumes = () => async (dispatch) => {
 export const saveResumes = (resumeData) => async (dispatch) => {
   const response = await fetch(`/api/resumes/save`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    method: 'POST',
-    body: JSON.stringify(resumeData)
-  })
-}
+    method: "POST",
+    body: JSON.stringify(resumeData),
+  });
+};
 
 export const editResumes = (resumeId) => async (dispatch) => {
   const response = await fetch(`/api/resumes/edit/${resumeId}`);
@@ -64,29 +76,50 @@ export const editResumes = (resumeId) => async (dispatch) => {
   return res;
 };
 
-const resumeReducer = (state = {}, action) => {
+export const addField = (field) => async (dispatch) => {
+  dispatch(add_field(field));
+};
 
+export const removeField = (field) => async (dispatch) => {
+  dispatch(remove_field(field));
+};
+
+const resumeReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case LOAD_RESUMES:
       newState = {};
       newState.resume = action.resumes;
       return newState;
-      break;
     case CLEAR_RESUMES:
       newState = {};
       return newState;
-      break;
     case EDIT_RESUMES:
       newState = {};
       newState.resume = action.resume;
       return newState;
-      break;
     case DELETE_RESUME:
       newState = {};
       newState.resume = action.id;
       return newState;
-      break;
+    case ADD_FIELD:
+      newState = Object.assign({}, state);
+      newState.resume.fields.splice(action.field.order, 0, action.field);
+      for (let i = action.field.order; i < newState.resume.fields.length; i++) {
+        newState.resume.fields[i].order++;
+      }
+      return newState;
+    case REMOVE_FIELD:
+      newState = Object.assign({}, state);
+      newState.resume.fields.splice(action.field.order, 1);
+      for (
+        let i = action.field.order - 1;
+        i < newState.resume.fields.length;
+
+      ) {
+        newState.resume.fields[i].order--;
+      }
+      return newState;
     default:
       return state;
   }
