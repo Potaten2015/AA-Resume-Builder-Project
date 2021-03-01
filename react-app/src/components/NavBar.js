@@ -43,6 +43,18 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                 {authenticated && (
                   <li className="nav-item">
                     <NavLink
+                      to="/"
+                      exact={true}
+                      activeClassName="active"
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      Home
+                    </NavLink>
+                  </li>
+                )}
+                {authenticated && (
+                  <li className="nav-item">
+                    <NavLink
                       to="/templates"
                       exact={true}
                       activeClassName="active"

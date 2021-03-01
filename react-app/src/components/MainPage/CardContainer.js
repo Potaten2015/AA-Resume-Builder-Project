@@ -39,7 +39,9 @@ const CardContainer = ({ templates, resumes, loaded }) => {
                 <Card title={template_name} tags={templates[template_name]['default_tags']} />
               </a>
             ))}
-            <Card title={'Explore All Templates'} tags={false} />
+            <a href="/templates">
+              <Card title={'Explore All Templates'} tags={false} />
+            </a>
           </div>
         )}
         {resumes && loaded && (
@@ -49,7 +51,9 @@ const CardContainer = ({ templates, resumes, loaded }) => {
                 <Card title={resume['user_tags'][0]} tags={resume['user_tags']} />
               </a>
             ))}
-            <Card title={'Manage All Resumes'} tags={false} />
+            <a href="/resumes">
+              <Card title={'Manage All Resumes'} tags={false} />
+            </a>
           </div>
         )}
       </div>
