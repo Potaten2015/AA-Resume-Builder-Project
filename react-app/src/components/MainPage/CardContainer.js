@@ -26,6 +26,7 @@ const CardContainer = ({ templates, resumes, loaded }) => {
           <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
             {visibleTemplates.map((template_name) => (
               <a
+                key={template_name}
                 href={`/resume/${user.id}/create`}
                 onClick={(e) =>
                   dispatch(
@@ -47,7 +48,7 @@ const CardContainer = ({ templates, resumes, loaded }) => {
         {resumes && loaded && (
           <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10">
             {visibleResumes.map((resume) => (
-              <a href={`resumes/${resume.id}`}>
+              <a href={`resumes/${resume.id}`} key={resume.id}>
                 <Card title={resume['user_tags'][0]} tags={resume['user_tags']} />
               </a>
             ))}

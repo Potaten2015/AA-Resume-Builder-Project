@@ -25,7 +25,10 @@ const Card = ({ title, tags, button }) => {
         <div className="px-3 py-1">
           {tags &&
             tags.map((tag) => (
-              <span className="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">
+              <span
+                key={tag}
+                className="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"
+              >
                 #{tag}
               </span>
             ))}

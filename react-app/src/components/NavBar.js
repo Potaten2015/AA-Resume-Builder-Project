@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated, authenticated }) => {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
+
+  useEffect(() => {
+    console.log('NavbarOpen: ', navbarOpen);
+  }, [navbarOpen]);
   return (
     <div className="flex flex-wrap py-2">
       <div className="w-full px-4">
@@ -20,13 +25,17 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
               <button
                 className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                 type="button"
+                onClick={() => setNavbarOpen(!navbarOpen)}
               >
                 <span className="block relative w-6 h-px rounded-sm bg-white"></span>
                 <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
                 <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
               </button>
             </div>
-            <div className="flex lg:flex-grow items-center" id="example-navbar-info">
+            <div
+              className={'lg:flex-grow items-center' + (navbarOpen ? 'flex' : 'hidden')}
+              id="example-navbar-info"
+            >
               <ul className="flex flex-col lg:flex-row list-none ml-auto">
                 {!authenticated && (
                   <li className="nav-item">
