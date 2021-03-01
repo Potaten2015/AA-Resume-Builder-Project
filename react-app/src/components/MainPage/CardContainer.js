@@ -40,7 +40,7 @@ const CardContainer = ({ templates, resumes, loaded }) => {
               </a>
             ))}
             <a href="/templates">
-              <Card title={'Explore All Templates'} tags={false} />
+              <Card title={'Explore All Templates'} tags={false} button={true} />
             </a>
           </div>
         )}
@@ -52,7 +52,7 @@ const CardContainer = ({ templates, resumes, loaded }) => {
               </a>
             ))}
             <a href="/resumes">
-              <Card title={'Manage All Resumes'} tags={false} />
+              <Card title={'Manage All Resumes'} tags={false} button={true} />
             </a>
           </div>
         )}
