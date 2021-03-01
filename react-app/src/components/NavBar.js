@@ -64,6 +64,18 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
                     </NavLink>
                   </li>
                 )}
+                {authenticated && (
+                  <li className="nav-item">
+                    <NavLink
+                      to="/about"
+                      exact={true}
+                      activeClassName="active"
+                      className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    >
+                      About Us
+                    </NavLink>
+                  </li>
+                )}
                 {!authenticated && (
                   <li className="nav-item">
                     <NavLink
