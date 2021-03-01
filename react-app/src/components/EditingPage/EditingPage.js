@@ -134,10 +134,10 @@ const EditingPage = () => {
     return (
       current_resume &&
       loaded && (
-        <div className="w-full h-5/6">
+        <div className="editing-page w-full h-5/6">
           <div className="w-full h-5/6 grid grid-cols-12 grid-rows-1 justify-items-center bg-main">
             <div className="m-2 col-start-1 col-end-6 w-11/12 h-30 p-2 text-accentDark bg-white">
-              <h1 className="w-full text-center">Editing Resume</h1>
+              <h1 className="w-full text-center">Edit Resume</h1>
               <form className="w-full h-auto">
                 <Preview
                   template_name={""}
@@ -149,7 +149,7 @@ const EditingPage = () => {
                 />
               </form>
             </div>
-            <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-center space-y-4">
+            <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-start space-y-4">
               <label htmlFor="user-tags">
                 Comma Separated Tags (Use to identify your resume)
               </label>
@@ -186,8 +186,8 @@ const EditingPage = () => {
                 Save as PDF
               </button>
             </div>
-            <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
-              <h1>Resume Preview</h1>
+            <div className="m-2 w-11/12 col-start-8 col-end-13 bg-main p-2 h-11/12">
+              <h1 className="w-full text-center">Resume Preview</h1>
               <Preview
                 template_name={"Resume Preview"}
                 template={current_resume.fields}
@@ -206,10 +206,10 @@ const EditingPage = () => {
     return (
       current_template_object &&
       loaded && (
-        <div className="w-full h-5/6 bg-red-500">
-          <div className="w-full h-5/6 grid grid-cols-12 grid-rows-1 justify-items-center bg-blue-500">
-            <div className="m-2 col-start-1 col-end-6 w-11/12 h-30 p-2 text-accentDark bg-black">
-              <h1 className="w-full text-center">Editing Resume</h1>
+        <div className="editing-page w-full h-5/6">
+          <div className="w-full h-5/6 grid grid-cols-12 grid-rows-1 justify-items-center bg-main">
+            <div className="m-2 col-start-1 col-end-6 w-11/12 h-30 p-2 text-accentDark bg-white">
+              <h1 className="w-full text-center">Edit Resume</h1>
               <form className="w-full h-auto">
                 <Preview
                   template_name={current_template_name}
@@ -221,7 +221,7 @@ const EditingPage = () => {
                 />
               </form>
             </div>
-            <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-center space-y-4">
+            <div className="m-2 col-start-6 col-end-8 h-full flex flex-col items-center justify-start space-y-4">
               <label htmlFor="user-tags">
                 Comma Separated Tags (Use to identify your resume)
               </label>
@@ -258,8 +258,8 @@ const EditingPage = () => {
                 Save as PDF
               </button>
             </div>
-            <div className="m-2 w-11/12 col-start-8 col-end-13 bg-yellow-500 p-2 h-11/12">
-              <h1>Resume Preview</h1>
+            <div className="m-2 w-11/12 col-start-8 col-end-13 bg-main p-2 h-11/12">
+              <h1 className="w-full text-center">Resume Preview</h1>
               <Preview
                 template_name={current_template_name}
                 template={current_template}

@@ -1,7 +1,9 @@
-const LOAD_TEMPLATES = 'template/LOAD_TEMPLATES';
-const CURRENT_TEMPLATE = 'template/CURRENT_TEMPLATE';
-const CLEAR_TEMPLATES = 'template/CLEAR_TEMPLATES';
-const LOAD_STYLES = 'template/LOAD_STYLES'
+const LOAD_TEMPLATES = "template/LOAD_TEMPLATES";
+const CURRENT_TEMPLATE = "template/CURRENT_TEMPLATE";
+const CLEAR_TEMPLATES = "template/CLEAR_TEMPLATES";
+const LOAD_STYLES = "template/LOAD_STYLES";
+const ADD_FIELD = "template/ADD_FIELD";
+const REMOVE_FIELD = "template/REMOVE_FIELD";
 
 const template_loading = (templates) => ({
   type: LOAD_TEMPLATES,
@@ -19,7 +21,17 @@ const clear_templates = () => ({
 
 const load_styles = (styles) => ({
   type: LOAD_STYLES,
-  styles
+  styles,
+});
+
+const add_field = (field) => ({
+  type: ADD_FIELD,
+  field,
+});
+
+const remove_field = (field) => ({
+  type: REMOVE_FIELD,
+  field,
 });
 
 export const getTemplates = () => async (dispatch) => {
@@ -35,14 +47,22 @@ export const clearTemplates = () => async (dispatch) => {
 };
 
 export const loadStyles = () => async (dispatch) => {
-  const response = await fetch(`/api/templates/styles`)
+  const response = await fetch(`/api/templates/styles`);
   const res = await response.json();
-  dispatch(load_styles(res))
+  dispatch(load_styles(res));
   return;
-}
+};
 
 export const updateCurrentTemplate = (template) => async (dispatch) =>
   dispatch(current_template(template));
+
+export const addFieldTemplate = (field) => async (dispatch) => {
+  dispatch(add_field(field));
+};
+
+export const removeFieldTemplate = (field) => async (dispatch) => {
+  dispatch(remove_field(field));
+};
 
 const templateReducer = (state = {}, action) => {
   let newState;
@@ -63,9 +83,31 @@ const templateReducer = (state = {}, action) => {
     }
     case LOAD_STYLES: {
       newState = Object.assign({}, state);
-      newState.styles = action.styles
+      newState.styles = action.styles;
       return newState;
     }
+    case ADD_FIELD:
+      newState = Object.assign({}, state);
+      newState.current.fields.splice(action.field.order, 0, action.field);
+      for (
+        let i = action.field.order;
+        i < newState.current.fields.length;
+        i++
+      ) {
+        newState.current.fields[i].order++;
+      }
+      return newState;
+    case REMOVE_FIELD:
+      newState = Object.assign({}, state);
+      newState.current.fields.splice(action.field.order, 1);
+      for (
+        let i = action.field.order - 1;
+        i < newState.current.fields.length;
+        i++
+      ) {
+        newState.current.fields[i].order--;
+      }
+      return newState;
     default:
       return state;
   }
