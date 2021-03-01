@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Switch, Route, Redirect, NavLink } from "react-router-dom";
-import { LoginForm, SignUpForm } from "../auth";
-import { demoLogin } from "../../services/auth";
-import { useDispatch } from "react-redux";
-import * as UserActions from "../../store/user";
+import React, { useState } from 'react';
+import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
+import { LoginForm, SignUpForm } from '../auth';
+import { demoLogin } from '../../services/auth';
+import { useDispatch } from 'react-redux';
+import * as UserActions from '../../store/user';
 
-import splashImage from "./splash.jpg";
-import testerResume from "./test-img.png";
+import splashImage from './splash.jpg';
+import testerResume from './test-img.png';
 
 const LandingPage = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -25,14 +25,13 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
       <div className="text-center pt-4 bg-main mb-2 pb-4 ">
         <h1 className="text-6xl text-accentDark">Resume Builder</h1>
         <div className="flex flex-row space-around justify-center text-accentDark text-2xl">
-          <NavLink
-            to="/about"
-            className="p-2 transform hover:scale-105 cursor-pointer"
-          >
+          <NavLink to="/about" className="p-2 transform hover:scale-105 cursor-pointer">
             About Us
           </NavLink>
           <p className="pt-2"> | </p>
-          <p className="p-2 transform hover:scale-105 cursor-pointer">Log In</p>
+          <a href="#forms" className="p-2 transform hover:scale-105 cursor-pointer">
+            Log In
+          </a>
         </div>
       </div>
       <div id="splash">
@@ -40,10 +39,7 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
           <img src={splashImage} alt="This is a splash image" />
         </div>
       </div>
-      <div
-        id="interaction-box"
-        className="grid grid-cols-3 bg-main mt-2 mb-4 p-4"
-      >
+      <div id="interaction-box" className="grid grid-cols-3 bg-main mt-2 mb-4 p-4">
         <div id="forms-and-description" className="grid grid-rows-2">
           <div
             id="project-description"
@@ -54,15 +50,15 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                 Welcome Job Hunters!
               </p>
               <p className="text-xl text-accentDark p-4 ml-2 mr-2">
-                We built this application to streamline the admittedly terrible
-                experience of online resume builders.
+                We built this application to streamline the admittedly terrible experience of online
+                resume builders.
               </p>
               <p className="text-xl text-accentDark p-4 ml-2 mr-2">
                 We aren't going to charge you, email you, or spam ads at you :)
               </p>
               <p className="text-xl text-accentDark p-4 ml-2 mr-2">
-                This is totally free and open source; built by job hunters for
-                job hunters. We hope you find it helpful!
+                This is totally free and open source; built by job hunters for job hunters. We hope
+                you find it helpful!
               </p>
               <p className="p-2 transform hover:scale-105 cursor-pointer text-center text-accentDark text-2xl font-medium">
                 About Us
@@ -75,16 +71,10 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
           >
             <Switch>
               <Route path="/login" exact>
-                <LoginForm
-                  authenticated={authenticated}
-                  setAuthenticated={setAuthenticated}
-                />
+                <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
               </Route>
               <Route path="/sign-up" exact>
-                <SignUpForm
-                  authenticated={authenticated}
-                  setAuthenticated={setAuthenticated}
-                />
+                <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
               </Route>
             </Switch>
             <div className="flex flex-row m-2 text-lg text-accentDark font-bold">
@@ -117,10 +107,7 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
 
-        <div
-          id="style-wheel"
-          className="bg-accentLight45 p-4 m-2 col-start-2 col-end-4"
-        >
+        <div id="style-wheel" className="bg-accentLight45 p-4 m-2 col-start-2 col-end-4">
           <h1 className="text-4xl text-accentDark font-semibold mb-3 text-center">
             Some of our Resume style Templates!
           </h1>

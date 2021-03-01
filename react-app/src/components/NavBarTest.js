@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-export default function Navbar({ setAuthenticated, authenticated }) {
+export default function NavbarTest({ setAuthenticated, authenticated }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
