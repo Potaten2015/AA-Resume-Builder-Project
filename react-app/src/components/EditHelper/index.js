@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addField, removeField } from "../../store/resume";
+import { addFieldSaved, removeFieldSaved } from "../../store/resume";
+import { addFieldTemplate, removeFieldTemplate } from "../../store/template";
 import "./EditHelper.css";
 
 const EditHelper = ({ field, form, value, setValues, number }) => {
   const dispatch = useDispatch();
-  const [toggle, setToggle] = useState(false);
+  const path = window.location.pathname;
 
   let returnField;
   if (form) {
@@ -32,20 +33,33 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "github":
         returnField = (
-          <input
-            className="m-1 placeholder-gray-400"
-            type="text"
-            value={value}
-            onChange={(e) => {
-              e.persist();
-              setValues((prev) => {
-                let newState = Object.assign({}, prev);
-                newState[number] = e.target.value;
-                return newState;
-              });
-            }}
-            placeholder={field.placeholder}
-          />
+          <>
+            <div className="flex justify-center space-x-1">
+              <input
+                className="m-1 placeholder-gray-400"
+                type="text"
+                value={value}
+                onChange={(e) => {
+                  e.persist();
+                  setValues((prev) => {
+                    let newState = Object.assign({}, prev);
+                    newState[number] = e.target.value;
+                    return newState;
+                  });
+                }}
+                placeholder={field.placeholder}
+              />
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(removeFieldSaved(field))
+                    : dispatch(removeFieldTemplate(field));
+                }}>
+                Remove Field
+              </button>
+            </div>
+          </>
         );
         break;
       case "city":
@@ -139,20 +153,26 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
               }}
               placeholder={field.placeholder}
             />
-            {/* <button
-              className="text-accentDark border"
-              onClick={(e) => {
-                dispatch(addField(field));
-              }}>
-              Add Skill
-            </button>
-            <button
-              className="text-accentDark border"
-              onClick={(e) => {
-                dispatch(removeField(field));
-              }}>
-              Remove Skill
-            </button> */}
+            <div className="flex justify-center space-x-1">
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(addFieldSaved(field))
+                    : dispatch(addFieldTemplate(field));
+                }}>
+                Add Skill
+              </button>
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(removeFieldSaved(field))
+                    : dispatch(removeFieldTemplate(field));
+                }}>
+                Remove Skill
+              </button>
+            </div>
           </div>
         );
         break;
@@ -237,8 +257,9 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_facility":
         returnField = (
-          <h2 className="m-1 placeholder-gray-400">
+          <h2 className="m-1 placeholder-gray-400 w-6/12">
             <input
+              className="w-full"
               type="text"
               value={value}
               onChange={(e) => {
@@ -256,8 +277,9 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_degree":
         returnField = (
-          <p className="m-1 placeholder-gray-400">
+          <p className="m-1 placeholder-gray-400 w-6/12">
             <input
+              className="w-full"
               type="text"
               value={value}
               onChange={(e) => {
@@ -275,8 +297,9 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_graduation_date":
         returnField = (
-          <p className="m-1 placeholder-gray-400">
+          <p className="m-1 placeholder-gray-400 w-6/12">
             <input
+              className="w-6/12"
               type="text"
               value={value}
               onChange={(e) => {
@@ -295,38 +318,61 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
       case "education_gpa":
         returnField = (
           <p className="m-1 placeholder-gray-400">
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => {
-                e.persist();
-                setValues((prev) => {
-                  let newState = Object.assign({}, prev);
-                  newState[number] = e.target.value;
-                  return newState;
-                });
-              }}
-              placeholder={field.placeholder}
-            />
+            <div className="flex justify-center space-x-1">
+              <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                  e.persist();
+                  setValues((prev) => {
+                    let newState = Object.assign({}, prev);
+                    newState[number] = e.target.value;
+                    return newState;
+                  });
+                }}
+                placeholder={field.placeholder}
+              />
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(removeFieldSaved(field))
+                    : dispatch(removeFieldTemplate(field));
+                }}>
+                Remove GPA
+              </button>
+            </div>
           </p>
         );
         break;
       case "education_minor":
         returnField = (
-          <p className="m-1 placeholder-gray-400">
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => {
-                e.persist();
-                setValues((prev) => {
-                  let newState = Object.assign({}, prev);
-                  newState[number] = e.target.value;
-                  return newState;
-                });
-              }}
-              placeholder={field.placeholder}
-            />
+          <p className="m-1 placeholder-gray-400 w-6/12">
+            <div className="flex justify-center space-x-1">
+              <input
+                className="w-full"
+                type="text"
+                value={value}
+                onChange={(e) => {
+                  e.persist();
+                  setValues((prev) => {
+                    let newState = Object.assign({}, prev);
+                    newState[number] = e.target.value;
+                    return newState;
+                  });
+                }}
+                placeholder={field.placeholder}
+              />
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(removeFieldSaved(field))
+                    : dispatch(removeFieldTemplate(field));
+                }}>
+                Remove Minor
+              </button>
+            </div>
           </p>
         );
         break;
@@ -352,6 +398,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         returnField = (
           <p className="w-full">
             <textarea
+              rows={2}
               className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
@@ -370,6 +417,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         returnField = (
           <p className="w-full">
             <textarea
+              rows={7}
               className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
@@ -388,6 +436,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         returnField = (
           <p className="w-full">
             <textarea
+              row={2}
               className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
@@ -406,6 +455,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         returnField = (
           <div className="w-full">
             <textarea
+              row={3}
               className="w-full m-1 placeholder-gray-400"
               value={value}
               onChange={(e) => {
@@ -417,6 +467,26 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 });
               }}
               placeholder={field.placeholder}></textarea>
+            <div className="flex justify-center space-x-1">
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(addFieldSaved(field))
+                    : dispatch(addFieldTemplate(field));
+                }}>
+                Add Responsibility
+              </button>
+              <button
+                className="text-accentDark border"
+                onClick={(e) => {
+                  path.includes("edit")
+                    ? dispatch(removeFieldSaved(field))
+                    : dispatch(removeFieldTemplate(field));
+                }}>
+                Remove Responsibility
+              </button>
+            </div>
           </div>
         );
         break;
