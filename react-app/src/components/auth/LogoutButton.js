@@ -2,11 +2,13 @@ import React from 'react';
 import { logout } from '../../services/auth';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/user';
+import { useHistory } from 'react-router-dom';
 import { clearResumes } from '../../store/resume';
 import { clearTemplates } from '../../store/template';
 
 const LogoutButton = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogout = async (e) => {
     await logout();
@@ -14,6 +16,7 @@ const LogoutButton = ({ setAuthenticated }) => {
     await dispatch(clearResumes());
     await dispatch(clearTemplates());
     setAuthenticated(false);
+    history.push('/');
   };
 
   return (
