@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCurrentTemplate } from '../../store/template';
+import './MainPage.css';
 
 const CardContainer = ({ templates, resumes, loaded }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,25 @@ const CardContainer = ({ templates, resumes, loaded }) => {
   }
   if (resumes) {
     visibleResumes = Object.values(resumes).slice(0, 5);
+  }
+
+  if (!loaded) {
+    return (
+      <>
+        <h1 className="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
+          {templates ? 'Featured Templates' : 'Recent Resumes'}
+        </h1>
+        <div className="flex justify-center mt-24">
+          <button
+            type="button"
+            className="focus:outline-none font-bold text-white text-sm py-2.5 px-5 rounded-md bg-accentLight"
+            disabled
+          >
+            Loading...
+          </button>
+        </div>
+      </>
+    );
   }
 
   return (
