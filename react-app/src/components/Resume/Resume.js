@@ -42,12 +42,30 @@ const Resume = () => {
                 id="save-resume"
               />
             </div>
-            <div className="relative top-6">
-              <DeleteButton />
-              <button onClick={editResume}>Edit</button>
-            </div>
-            <div className="relative top-6">
-              <button onClick={saveAsPDF}>Save as PDF</button>
+            <div className="card bg-white py-3 px-5 rounded-xl flex flex-col mb-5">
+              <div className="w-full py-3 flex justify-center">
+                <div className="inline-block mr-2 mt-2">
+                  <button
+                    type="button"
+                    className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
+                    onClick={editResume}
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div className="inline-block mr-2 mt-2">
+                  <button
+                    type="button"
+                    className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
+                    onClick={saveAsPDF}
+                  >
+                    Save as PDF
+                  </button>
+                </div>
+                <div className="inline-block mr-2 mt-2">
+                  <DeleteButton />
+                </div>
+              </div>
             </div>
           </div>
         </>
