@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import NavBar from './components/NavBar';
-import NavBarTest from './components/NavBarTest';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -38,7 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       {authenticated && (
-        <NavBarTest setAuthenticated={setAuthenticated} authenticated={authenticated} />
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
       )}
       <Switch>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
