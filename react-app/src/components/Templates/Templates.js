@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTemplates, updateCurrentTemplate } from '../../store/template';
-import Preview from './Preview';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTemplates, updateCurrentTemplate } from "../../store/template";
+import Preview from "./Preview";
 
 const Templates = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Templates = () => {
       <div className="templates-page-outer">
         <div className="template-page-inner">
           <h1 className="w-full text-2xl text-center font-bold">Templates</h1>
-          <div className="grid grid-cols-3 h-full">
+          <div className="grid grid-cols-3 h-full space-x-1 justify-items-center">
             {loaded &&
               templates &&
               Object.keys(templates).length > 0 &&

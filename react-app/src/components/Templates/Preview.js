@@ -164,26 +164,27 @@ const Preview = ({
     );
   } else {
     return (
-      <div className="flex flex-col">
-        <div className="flex flex-col items-center space-y-3 underline">
-          <h2 className="flex items-center text-lg">{template_name}</h2>
-          <div className="flex items-center">
-            {tags.map((tag) => (
-              <p className="items-center text-sm mx-1">{`${tag}`}</p>
-            ))}
+      <NavLink
+        className="flex flex-column justify-center items-start mt-2 rounded-lg"
+        to={`/resume/${user.id}/create`}
+        onClick={(e) =>
+          dispatch(
+            updateCurrentTemplate({
+              name: template_name,
+              fields: template,
+            }),
+          )
+        }>
+        <div className="flex flex-col rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out w-11/12">
+          <div className="flex flex-col items-center space-y-3 underline px-6 py-3 bg-accentLight rounded-t-lg">
+            <h2 className="flex items-center text-lg">{template_name}</h2>
+            <div className="flex items-center">
+              {tags.map((tag) => (
+                <p className="items-center text-sm mx-1">{`${tag}`}</p>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="font-mono p-2 h-auto m-2 border h-full" id="preview3">
-          <NavLink
-            to={`/resume/${user.id}/create`}
-            onClick={(e) =>
-              dispatch(
-                updateCurrentTemplate({
-                  name: template_name,
-                  fields: template,
-                }),
-              )
-            }>
+          <div className="font-mono p-2 h-auto m-2 border h-full" id="preview3">
             {Object.keys(sections).map((section) => {
               return (
                 <ResumeSection
@@ -195,9 +196,9 @@ const Preview = ({
                 />
               );
             })}
-          </NavLink>
+          </div>
         </div>
-      </div>
+      </NavLink>
     );
   }
 };
