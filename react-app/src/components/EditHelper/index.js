@@ -13,7 +13,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
     switch (field.name) {
       case "full_name":
         returnField = (
-          <h1 className="w-full">
+          <h1 className="w-6/12">
             <input
               className="m-1 placeholder-gray-400"
               type="text"
@@ -50,7 +50,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 placeholder={field.placeholder}
               />
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(removeFieldSaved(field))
@@ -155,7 +155,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
             />
             <div className="flex justify-center space-x-1">
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(addFieldSaved(field))
@@ -164,7 +164,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 Add Skill
               </button>
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(removeFieldSaved(field))
@@ -297,7 +297,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_graduation_date":
         returnField = (
-          <p className="m-1 placeholder-gray-400 w-6/12">
+          <p className="m-1 placeholder-gray-400 w-full">
             <input
               className="w-6/12"
               type="text"
@@ -317,9 +317,10 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_gpa":
         returnField = (
-          <p className="m-1 placeholder-gray-400">
-            <div className="flex justify-center space-x-1">
+          <p className="m-1 placeholder-gray-400 w-full">
+            <div className="flex justify-start space-x-1 w-full">
               <input
+                className="w-6/12"
                 type="text"
                 value={value}
                 onChange={(e) => {
@@ -333,7 +334,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 placeholder={field.placeholder}
               />
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(removeFieldSaved(field))
@@ -347,10 +348,10 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
         break;
       case "education_minor":
         returnField = (
-          <p className="m-1 placeholder-gray-400 w-6/12">
-            <div className="flex justify-center space-x-1">
+          <p className="m-1 placeholder-gray-400 w-full">
+            <div className="flex justify-start space-x-1 w-full">
               <input
-                className="w-full"
+                className="w-6/12"
                 type="text"
                 value={value}
                 onChange={(e) => {
@@ -364,7 +365,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 placeholder={field.placeholder}
               />
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(removeFieldSaved(field))
@@ -469,7 +470,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
               placeholder={field.placeholder}></textarea>
             <div className="flex justify-center space-x-1">
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(addFieldSaved(field))
@@ -478,7 +479,7 @@ const EditHelper = ({ field, form, value, setValues, number }) => {
                 Add Responsibility
               </button>
               <button
-                className="text-accentDark border"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-red-500 hover:bg-accentDark hover:shadow-lg"
                 onClick={(e) => {
                   path.includes("edit")
                     ? dispatch(removeFieldSaved(field))

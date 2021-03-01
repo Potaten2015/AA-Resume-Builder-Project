@@ -176,14 +176,14 @@ const EditingPage = () => {
                 </select>
               </div>
               <button
-                className="border rounded-sm hover:bg-accentDark hover:text-white"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={saveResume}>
                 Save Resume
               </button>
               <button
-                className="border rounded-sm hover:bg-accentDark hover:text-white"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={saveAsPDF}>
-                Save as PDF
+                Download as PDF
               </button>
             </div>
             <div className="m-2 w-11/12 col-start-8 col-end-13 bg-main p-2 h-11/12">
@@ -248,14 +248,14 @@ const EditingPage = () => {
                 </select>
               </div>
               <button
-                className="border rounded-sm hover:bg-accentDark hover:text-white"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={saveResume}>
                 Save Resume
               </button>
               <button
-                className="border rounded-sm hover:bg-accentDark hover:text-white"
+                className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-accentLight hover:bg-accentDark hover:shadow-lg"
                 onClick={saveAsPDF}>
-                Save as PDF
+                Download as PDF
               </button>
             </div>
             <div className="m-2 w-11/12 col-start-8 col-end-13 bg-main p-2 h-11/12">
