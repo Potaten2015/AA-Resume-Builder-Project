@@ -76,11 +76,11 @@ export const editResumes = (resumeId) => async (dispatch) => {
   return res;
 };
 
-export const addField = (field) => async (dispatch) => {
+export const addFieldSaved = (field) => async (dispatch) => {
   dispatch(add_field(field));
 };
 
-export const removeField = (field) => async (dispatch) => {
+export const removeFieldSaved = (field) => async (dispatch) => {
   dispatch(remove_field(field));
 };
 
@@ -115,7 +115,7 @@ const resumeReducer = (state = {}, action) => {
       for (
         let i = action.field.order - 1;
         i < newState.resume.fields.length;
-
+        i++
       ) {
         newState.resume.fields[i].order--;
       }
