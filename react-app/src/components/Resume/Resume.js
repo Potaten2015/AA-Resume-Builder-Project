@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./Resume.css";
-import * as resumeActions from "../../store/resume";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
-import DeleteButton from "../DeleteButton/DeleteButton";
-import html2pdf from "html2pdf.js";
+import React, { useEffect, useState } from 'react';
+import './Resume.css';
+import * as resumeActions from '../../store/resume';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import DeleteButton from '../DeleteButton/DeleteButton';
+import html2pdf from 'html2pdf.js';
 
 const Resume = () => {
   const { resumeId } = useParams();
@@ -21,12 +21,12 @@ const Resume = () => {
 
   const editResume = async (e) => {
     await dispatch(resumeActions.editResumes(resumeId));
-    history.push("/resume/0/edit");
+    history.push('/resume/0/edit');
   };
 
   const saveAsPDF = () => {
-    console.log("Saving as PDF...");
-    const element = document.getElementById("save-resume");
+    console.log('Saving as PDF...');
+    const element = document.getElementById('save-resume');
     html2pdf(element);
   };
 
@@ -35,7 +35,7 @@ const Resume = () => {
       {loaded && resume && (
         <>
           <div className="resume_space block">
-            <div className="individual_resume border border-black overflow-hidden p-2">
+            <div className="individual_resume border border-black overflow-hidden p-2 max-w-3xl max-h-96 min-w-content min-h-content">
               <div
                 className="p-2"
                 dangerouslySetInnerHTML={{ __html: resume.html }}
