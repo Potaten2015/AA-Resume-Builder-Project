@@ -14,7 +14,7 @@ const CardContainer = ({ templates, resumes, loaded }) => {
     visibleTemplates = Object.keys(templates).slice(0, 5);
   }
   if (resumes) {
-    visibleResumes = Object.values(resumes).slice(0, 5);
+    visibleResumes = Object.values(resumes).slice(Object.values(resumes).length - 4);
   }
 
   if (!loaded) {
