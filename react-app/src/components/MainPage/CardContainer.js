@@ -27,7 +27,6 @@ const CardContainer = ({ templates, resumes, loaded }) => {
                   )
                 }
               >
-                >
                 <Card title={template_name} />
               </a>
             ))}
