@@ -7,15 +7,24 @@ const CardContainer = ({ templates, resumes, loaded }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
+  let visibleTemplates;
+  let visibleResumes;
+  if (templates) {
+    visibleTemplates = Object.keys(templates).slice(0, 5);
+  }
+  if (resumes) {
+    visibleResumes = Object.values(resumes).slice(0, 5);
+  }
+
   return (
-    <div className="flex flex-col bg-white m-auto p-auto">
+    <div className="flex flex-col bg-main m-auto p-auto">
       <h1 className="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
         {templates ? 'Featured Templates' : 'Recent Resumes'}
       </h1>
       <div className="flex overflow-x-hidden pb-10">
         {templates && loaded && (
           <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
-            {Object.keys(templates).map((template_name) => (
+            {visibleTemplates.map((template_name) => (
               <a
                 href={`/resume/${user.id}/create`}
                 onClick={(e) =>
@@ -27,18 +36,20 @@ const CardContainer = ({ templates, resumes, loaded }) => {
                   )
                 }
               >
-                <Card title={template_name} />
+                <Card title={template_name} tags={templates[template_name]['default_tags']} />
               </a>
             ))}
+            <Card title={'Explore All Templates'} tags={false} />
           </div>
         )}
         {resumes && loaded && (
           <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10">
-            {Object.values(resumes).map((resume) => (
+            {visibleResumes.map((resume) => (
               <a href={`resumes/${resume.id}`}>
-                <Card title={resume['user_tags'][0]} />
+                <Card title={resume['user_tags'][0]} tags={resume['user_tags']} />
               </a>
             ))}
+            <Card title={'Manage All Resumes'} tags={false} />
           </div>
         )}
       </div>

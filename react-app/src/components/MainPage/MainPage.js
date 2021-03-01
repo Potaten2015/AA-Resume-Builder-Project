@@ -21,11 +21,12 @@ const MainPage = () => {
 
   return (
     <>
-      <h1>Main Page</h1>
-      <section>My Resumes</section>
-      <CardContainer resumes={resumes} loaded={loaded} />
-      <section>Discover Templates</section>
-      <CardContainer templates={templates} loaded={loaded} />
+      <section>
+        <CardContainer resumes={resumes} loaded={loaded} />
+      </section>
+      <section>
+        <CardContainer templates={templates} loaded={loaded} />
+      </section>
     </>
   );
 };
